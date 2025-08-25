@@ -88,6 +88,24 @@
     
             <section id="draft-section" class="bg-gray-800 rounded-lg shadow-2xl p-6 mb-8">
                 <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">Draft Results</h2>
+                <div class="mb-4 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <div class="flex items-center">
+                        <label for="round-select" class="font-bold mr-2 text-gray-300">Filter by Round:</label>
+                        <select id="round-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
+                            <option value="All">All Rounds</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center">
+                        <label for="team-name-select" class="font-bold mr-2 text-gray-300">Filter by Team:</label>
+                        <select id="team-name-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
+                            <option value="All">All Teams</option>
+                        </select>
+                    </div>
+                    <div class="flex-1">
+                        <label for="player-search" class="sr-only">Search for Player</label>
+                        <input type="text" id="player-search" placeholder="Search Player Name" class="w-full p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200 placeholder-gray-400">
+                    </div>
+                </div>
                 <div class="overflow-x-auto max-h-96 overflow-y-auto">
                     <table class="min-w-full text-left">
                         <thead class="bg-gray-700 text-gray-300">
@@ -97,7 +115,7 @@
                         </tbody>
                     </table>
                 </div>
-            </section>            
+            </section>
             
     
             <section id="transactions-section" class="bg-gray-800 rounded-lg shadow-2xl p-6">
