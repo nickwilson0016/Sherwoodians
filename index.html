@@ -213,26 +213,19 @@
             // Find Champion and Sacko
             const champion = filteredPlayoff.find(matchup => matchup['Matchup Name'] === 'championship')?.Winner;
             const sackoMatch = filteredPlayoff.find(matchup => matchup['Matchup Name'] === 'Sacko');
-            let sacko = 'N/A';
-            if (sackoMatch) {
-                if (sackoMatch['Team 1'] === sackoMatch.Winner) {
-                    sacko = sackoMatch['Team 2'];
-                } else if (sackoMatch['Team 2'] === sackoMatch.Winner) {
-                    sacko = sackoMatch['Team 1'];
-                }
-            }
+            const sacko = sackoMatch?.Loser;
 
             championNameEl.textContent = champion || 'N/A';
-            sackoNameEl.textContent = sacko;
+            sackoNameEl.textContent = sacko || 'N/A';
             
             // Filter and render Playoff Brackets
             const winnersBracket = filteredPlayoff.filter(row => row.Bracket === 'Winners').map(row => {
-                return { 'Round': row.Round, 'Home': row['Team 1'], 'Away': row['Team 2'], 'Winner': row.Winner };
+                return { 'Round': row.Round, 'Match Name': row['Matchup Name'], 'Home': row['Team 1'], 'Away': row['Team 2'], 'Winner': row.Winner };
             });
             const losersBracket = filteredPlayoff.filter(row => row.Bracket === 'Losers').map(row => {
-                return { 'Round': row.Round, 'Home': row['Team 1'], 'Away': row['Team 2'], 'Winner': row.Winner };
+                return { 'Round': row.Round, 'Match Name': row['Matchup Name'], 'Home': row['Team 1'], 'Away': row['Team 2'], 'Winner': row.Winner };
             });
-            const playoffHeaders = ['Round', 'Home', 'Away', 'Winner'];
+            const playoffHeaders = ['Round', 'Match Name', 'Home', 'Away', 'Winner'];
 
             renderTable(standingsBody, standingsHeader, filteredStandings, allData.standings.headers);
             renderTable(draftBody, draftHeader, filteredDraft, allData.draft.headers);
