@@ -36,6 +36,17 @@
         </section>
 
         <div id="content-container">
+            <section id="season-honors" class="bg-gray-800 rounded-lg shadow-2xl p-6 mb-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-700 rounded-lg p-6 text-center shadow-lg">
+                    <h3 class="text-2xl font-bold mb-2 text-[#FFD166]">Season Champion</h3>
+                    <p id="champion-name" class="text-4xl font-black text-white">Loading...</p>
+                </div>
+                <div class="bg-gray-700 rounded-lg p-6 text-center shadow-lg">
+                    <h3 class="text-2xl font-bold mb-2 text-[#F9D423]">Sacko</h3>
+                    <p id="sacko-name" class="text-4xl font-black text-white">Loading...</p>
+                </div>
+            </section>
+            
             <section id="standings-section" class="bg-gray-800 rounded-lg shadow-2xl p-6 mb-8">
                 <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">Final Standings</h2>
                 <div class="overflow-x-auto">
@@ -51,14 +62,27 @@
     
             <section id="playoff-section" class="bg-gray-800 rounded-lg shadow-2xl p-6 mb-8">
                 <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">Playoff Bracket</h2>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full text-left">
-                        <thead class="bg-gray-700 text-gray-300">
-                            <tr id="playoff-header"></tr>
-                        </thead>
-                        <tbody id="playoff-body">
-                        </tbody>
-                    </table>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="overflow-x-auto">
+                        <h3 class="text-xl font-bold mb-2 text-gray-300">Winners Bracket</h3>
+                        <table class="min-w-full text-left">
+                            <thead class="bg-gray-700 text-gray-300">
+                                <tr id="winners-bracket-header"></tr>
+                            </thead>
+                            <tbody id="winners-bracket-body">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <h3 class="text-xl font-bold mb-2 text-gray-300">Losers Bracket</h3>
+                        <table class="min-w-full text-left">
+                            <thead class="bg-gray-700 text-gray-300">
+                                <tr id="losers-bracket-header"></tr>
+                            </thead>
+                            <tbody id="losers-bracket-body">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </section>
     
@@ -115,10 +139,14 @@
         const draftHeader = document.getElementById('draft-header');
         const transactionsBody = document.getElementById('transactions-body');
         const transactionsHeader = document.getElementById('transactions-header');
-        const playoffBody = document.getElementById('playoff-body');
-        const playoffHeader = document.getElementById('playoff-header');
+        const winnersBracketBody = document.getElementById('winners-bracket-body');
+        const winnersBracketHeader = document.getElementById('winners-bracket-header');
+        const losersBracketBody = document.getElementById('losers-bracket-body');
+        const losersBracketHeader = document.getElementById('losers-bracket-header');
         const loadingSpinner = document.getElementById('loading-spinner');
         const contentContainer = document.getElementById('content-container');
+        const championNameEl = document.getElementById('champion-name');
+        const sackoNameEl = document.getElementById('sacko-name');
         
         let allData = {};
 
@@ -182,10 +210,35 @@
             const filteredTransactions = allData.transactions.data.filter(row => row.Year === year);
             const filteredPlayoff = allData.playoff.data.filter(row => row.Year === year);
             
+            // Find Champion and Sacko
+            const champion = filteredPlayoff.find(matchup => matchup['Matchup Name'] === 'championship')?.Winner;
+            const sackoMatch = filteredPlayoff.find(matchup => matchup['Matchup Name'] === 'Sacko');
+            let sacko = 'N/A';
+            if (sackoMatch) {
+                if (sackoMatch['Team 1'] === sackoMatch.Winner) {
+                    sacko = sackoMatch['Team 2'];
+                } else if (sackoMatch['Team 2'] === sackoMatch.Winner) {
+                    sacko = sackoMatch['Team 1'];
+                }
+            }
+
+            championNameEl.textContent = champion || 'N/A';
+            sackoNameEl.textContent = sacko;
+            
+            // Filter and render Playoff Brackets
+            const winnersBracket = filteredPlayoff.filter(row => row.Bracket === 'Winners').map(row => {
+                return { 'Round': row.Round, 'Home': row['Team 1'], 'Away': row['Team 2'], 'Winner': row.Winner };
+            });
+            const losersBracket = filteredPlayoff.filter(row => row.Bracket === 'Losers').map(row => {
+                return { 'Round': row.Round, 'Home': row['Team 1'], 'Away': row['Team 2'], 'Winner': row.Winner };
+            });
+            const playoffHeaders = ['Round', 'Home', 'Away', 'Winner'];
+
             renderTable(standingsBody, standingsHeader, filteredStandings, allData.standings.headers);
             renderTable(draftBody, draftHeader, filteredDraft, allData.draft.headers);
             renderTable(transactionsBody, transactionsHeader, filteredTransactions, allData.transactions.headers);
-            renderTable(playoffBody, playoffHeader, filteredPlayoff, allData.playoff.headers);
+            renderTable(winnersBracketBody, winnersBracketHeader, winnersBracket, playoffHeaders);
+            renderTable(losersBracketBody, losersBracketHeader, losersBracket, playoffHeaders);
 
             loadingSpinner.classList.add('hidden');
             contentContainer.classList.remove('hidden');
