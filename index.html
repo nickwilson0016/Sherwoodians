@@ -116,7 +116,6 @@
                     </table>
                 </div>
             </section>
-            
     
             <section id="transactions-section" class="bg-gray-800 rounded-lg shadow-2xl p-6">
                 <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">Transactions</h2>
@@ -152,6 +151,9 @@
         };
 
         const seasonSelect = document.getElementById('season-select');
+        const draftRoundSelect = document.getElementById('round-select');
+        const draftTeamSelect = document.getElementById('team-name-select');
+        const playerSearchInput = document.getElementById('player-search');
         const standingsBody = document.getElementById('standings-body');
         const standingsHeader = document.getElementById('standings-header');
         const draftBody = document.getElementById('draft-body');
@@ -168,6 +170,9 @@
         const sackoNameEl = document.getElementById('sacko-name');
         
         let allData = {};
+        let currentDraftRound = 'All';
+        let currentDraftTeam = 'All';
+        let currentPlayerSearch = '';
 
         async function fetchAndParseCSV(url) {
             try {
@@ -225,9 +230,30 @@
             contentContainer.classList.add('hidden');
 
             const filteredStandings = allData.standings.data.filter(row => row.Year === year);
-            const filteredDraft = allData.draft.data.filter(row => row.Year === year);
+            let filteredDraft = allData.draft.data.filter(row => row.Year === year);
             const filteredTransactions = allData.transactions.data.filter(row => row.Year === year);
             const filteredPlayoff = allData.playoff.data.filter(row => row.Year === year);
+
+            // Populate draft filter dropdowns
+            const teams = new Set(allData.draft.data.filter(row => row.Year === year).map(row => row['Team Name']));
+            draftTeamSelect.innerHTML = '<option value="All">All Teams</option>' + Array.from(teams).sort().map(team => `<option value="${team}">${team}</option>`).join('');
+            draftTeamSelect.value = currentDraftTeam;
+            
+            const rounds = new Set(allData.draft.data.filter(row => row.Year === year).map(row => row.Round));
+            draftRoundSelect.innerHTML = '<option value="All">All Rounds</option>' + Array.from(rounds).sort((a,b) => a - b).map(round => `<option value="${round}">Round ${round}</option>`).join('');
+            draftRoundSelect.value = currentDraftRound;
+            
+            // Apply draft filters
+            if (currentDraftRound !== 'All') {
+                filteredDraft = filteredDraft.filter(row => row.Round === currentDraftRound);
+            }
+            if (currentDraftTeam !== 'All') {
+                filteredDraft = filteredDraft.filter(row => row['Team Name'] === currentDraftTeam);
+            }
+            if (currentPlayerSearch) {
+                const searchTerm = currentPlayerSearch.toLowerCase();
+                filteredDraft = filteredDraft.filter(row => row['Player Name'].toLowerCase().includes(searchTerm));
+            }
             
             // Find Champion and Sacko
             const champion = filteredPlayoff.find(matchup => matchup['Matchup Name'] === 'Championship')?.Winner;
@@ -286,6 +312,22 @@
             const selectedYear = e.target.value;
             loadData(selectedYear);
         });
+
+        draftRoundSelect.addEventListener('change', (e) => {
+            currentDraftRound = e.target.value;
+            loadData(seasonSelect.value);
+        });
+
+        draftTeamSelect.addEventListener('change', (e) => {
+            currentDraftTeam = e.target.value;
+            loadData(seasonSelect.value);
+        });
+
+        playerSearchInput.addEventListener('input', (e) => {
+            currentPlayerSearch = e.target.value;
+            loadData(seasonSelect.value);
+        });
+
 
         document.addEventListener('DOMContentLoaded', () => {
             initializeData();
