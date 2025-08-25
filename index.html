@@ -211,7 +211,7 @@
             const filteredPlayoff = allData.playoff.data.filter(row => row.Year === year);
             
             // Find Champion and Sacko
-            const champion = filteredPlayoff.find(matchup => matchup['Matchup Name'] === 'championship')?.Winner;
+            const champion = filteredPlayoff.find(matchup => matchup['Matchup Name'] === 'Championship')?.Winner;
             const sackoMatch = filteredPlayoff.find(matchup => matchup['Matchup Name'] === 'Sacko');
             const sacko = sackoMatch?.Loser;
 
