@@ -220,10 +220,10 @@
             
             // Filter and render Playoff Brackets
             const winnersBracket = filteredPlayoff.filter(row => row.Bracket === 'Winners').map(row => {
-                return { 'Round': row.Round, 'Home': row['Team 1'], 'Away': row['Team 2'], 'Winner': row.Winner };
+                return { 'Round': row['Matchup Name'], 'Home': row['Team 1'], 'Away': row['Team 2'], 'Winner': row.Winner };
             });
             const losersBracket = filteredPlayoff.filter(row => row.Bracket === 'Losers').map(row => {
-                return { 'Round': row.Round, 'Home': row['Team 1'], 'Away': row['Team 2'], 'Winner': row.Winner };
+                return { 'Round': row['Matchup Name'], 'Home': row['Team 1'], 'Away': row['Team 2'], 'Winner': row.Winner };
             });
             const playoffHeaders = ['Round', 'Home', 'Away', 'Winner'];
 
