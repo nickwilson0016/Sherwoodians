@@ -157,7 +157,16 @@
             tableHeader.innerHTML = headerHtml;
 
             const bodyHtml = data.map(row => {
-                const cells = headers.map(header => `<td class="p-3">${row[header]}</td>`).join('');
+                const cells = headers.map(header => {
+                    let cellValue = row[header];
+                    if (header === 'Points For' || header === 'Points Against') {
+                        const numericValue = parseFloat(cellValue);
+                        if (!isNaN(numericValue)) {
+                            cellValue = numericValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                        }
+                    }
+                    return `<td class="p-3">${cellValue}</td>`;
+                }).join('');
                 return `<tr class="border-b border-gray-700">${cells}</tr>`;
             }).join('');
             tableBody.innerHTML = bodyHtml;
