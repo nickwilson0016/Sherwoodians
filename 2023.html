@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy League History - 2023 Season</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1A202C;
+            color: #E2E8F0;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#FF4E50] via-[#FC913A] to-[#F9D423]">League Legacy Dashboard</h1>
+            <p class="text-xl text-gray-400 mt-2">2023 Season</p>
+        </header>
+        
+        <nav class="flex justify-center flex-wrap gap-2 md:gap-4 mb-12">
+            <a href="index.html" class="px-4 py-2 rounded-lg font-bold text-gray-300 hover:bg-gray-700 transition-colors duration-200">Home</a>
+            <a href="index2.html" class="px-4 py-2 rounded-lg font-bold text-gray-300 hover:bg-gray-700 transition-colors duration-200">2024</a>
+            <a href="2023.html" class="px-4 py-2 rounded-lg font-bold bg-gray-700 text-white transition-colors duration-200">2023</a>
+            <a href="2022.html" class="px-4 py-2 rounded-lg font-bold text-gray-300 hover:bg-gray-700 transition-colors duration-200">2022</a>
+            <a href="2021.html" class="px-4 py-2 rounded-lg font-bold text-gray-300 hover:bg-gray-700 transition-colors duration-200">2021</a>
+        </nav>
+
+        <div id="content-container">
+            <section id="season-honors" class="bg-gray-800 rounded-lg shadow-2xl p-6 mb-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-700 rounded-lg p-6 text-center shadow-lg">
+                    <h3 class="text-2xl font-bold mb-2 text-[#FFD166]">Season Champion</h3>
+                    <p id="champion-name" class="text-4xl font-black text-white">Loading...</p>
+                </div>
+                <div class="bg-gray-700 rounded-lg p-6 text-center shadow-lg">
+                    <h3 class="text-2xl font-bold mb-2 text-[#F9D423]">Sacko</h3>
+                    <p id="sacko-name" class="text-4xl font-black text-white">Loading...</p>
+                </div>
+            </section>
+            
+            <section id="sacko-punishment-video" class="bg-gray-800 rounded-lg shadow-2xl p-6 hidden">
+                <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">Sacko Punishment</h2>
+                <div class="video-container relative pb-[56.25%] h-0 overflow-hidden max-w-full">
+                    <iframe id="sacko-video-frame" class="absolute top-0 left-0 w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <section id="standings-section" class="bg-gray-800 rounded-lg shadow-2xl p-6 mb-8">
+                <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">Final Standings</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full text-left">
+                        <thead class="bg-gray-700 text-gray-300">
+                            <tr id="standings-header"></tr>
+                        </thead>
+                        <tbody id="standings-body">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+    
+            <section id="playoff-section" class="bg-gray-800 rounded-lg shadow-2xl p-6 mb-8">
+                <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">Playoff Bracket</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="overflow-x-auto">
+                        <h3 class="text-xl font-bold mb-2 text-gray-300">Winners Bracket</h3>
+                        <table class="min-w-full text-left">
+                            <thead class="bg-gray-700 text-gray-300">
+                                <tr id="winners-bracket-header"></tr>
+                            </thead>
+                            <tbody id="winners-bracket-body">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <h3 class="text-xl font-bold mb-2 text-gray-300">Losers Bracket</h3>
+                        <table class="min-w-full text-left">
+                            <thead class="bg-gray-700 text-gray-300">
+                                <tr id="losers-bracket-header"></tr>
+                            </thead>
+                            <tbody id="losers-bracket-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+    
+            <section id="draft-section" class="bg-gray-800 rounded-lg shadow-2xl p-6 mb-8">
+                <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">Draft Results</h2>
+                <div class="mb-4 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <div class="flex items-center">
+                        <label for="round-select" class="font-bold mr-2 text-gray-300">Filter by Round:</label>
+                        <select id="round-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
+                            <option value="All">All Rounds</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center">
+                        <label for="team-name-select" class="font-bold mr-2 text-gray-300">Filter by Team:</label>
+                        <select id="team-name-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
+                            <option value="All">All Teams</option>
+                        </select>
+                    </div>
+                    <div class="flex-1">
+                        <label for="player-search" class="sr-only">Search for Player</label>
+                        <input type="text" id="player-search" placeholder="Search Player Name" class="w-full p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200 placeholder-gray-400">
+                    </div>
+                </div>
+                <div class="overflow-x-auto max-h-96 overflow-y-auto">
+                    <table class="min-w-full text-left">
+                        <thead class="bg-gray-700 text-gray-300">
+                            <tr id="draft-header"></tr>
+                        </thead>
+                        <tbody id="draft-body">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+    
+            <section id="transactions-section" class="bg-gray-800 rounded-lg shadow-2xl p-6">
+                <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">Transactions</h2>
+                <div class="mb-4 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <div class="flex items-center">
+                        <label for="transaction-week-select" class="font-bold mr-2 text-gray-300">Filter by Week:</label>
+                        <select id="transaction-week-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
+                            <option value="All">All Weeks</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center">
+                        <label for="transaction-type-select" class="font-bold mr-2 text-gray-300">Type:</label>
+                        <select id="transaction-type-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
+                            <option value="All">All Types</option>
+                        </select>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <label for="transaction-team-select" class="font-bold mr-2 text-gray-300">Filter by Team:</label>
+                        <select id="transaction-team-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
+                            <option value="All">All Teams</option>
+                        </select>
+                    </div>
+                    <div class="flex-1">
+                        <label for="transaction-player-search" class="sr-only">Search Player</label>
+                        <input type="text" id="transaction-player-search" placeholder="Search Player Name" class="w-full p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200 placeholder-gray-400">
+                    </div>
+                </div>
+                <div class="overflow-x-auto max-h-96 overflow-y-auto">
+                    <table class="min-w-full text-left">
+                        <thead class="bg-gray-700 text-gray-300">
+                            <tr id="transactions-header"></tr>
+                        </thead>
+                        <tbody id="transactions-body">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <div id="loading-spinner" class="text-center text-xl text-gray-400 mt-12 hidden">
+            <svg class="animate-spin h-8 w-8 text-gray-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <p class="mt-2">Loading data...</p>
+        </div>
+    </div>
+
+    <script>
+        const dataUrls = {
+            'standings': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTXmw29UZh_a-p13chTl3EUiUx1ll9NGD014qj7tVC0snPjuHcvLL_SqUIisuCE9ysRPwigIrepqnJ-/pub?gid=0&single=true&output=csv',
+            'draft': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQxG8wUhQIo6uXePQPQfmvZS-h0eOhWOWGV3TSerYYVVrWlaW59cdLe9rB_OqIalxkzuiDfNAa_5Gmu/pub?gid=763323686&single=true&output=csv',
+            'transactions': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRu0Gxeepf1R4Upz0NjdfIKlziTDimChyiK3nW7KiSFKj-iqux5b3gk_I88TGJppYvHoW5XwhJuPND7/pub?gid=0&single=true&output=csv',
+            'playoff': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSAf3ZlRSnJcgtKB1tQa_YaJqnkOVNQYRiEUiI92domLwNVqdIYNenzDWEouPYiNu98RJ7pVz9s9ggQ/pub?gid=0&single=true&output=csv',
+            'sacko-videos': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4zmNBKc5W7O2Cz13fsPqUXFV7E0v4MXHOSQx3FUt9MCMhN5_CRk8db5V4kh6nh_YIQDyd55lpnGN-/pub?gid=0&single=true&output=csv'
+        };
+
+        const seasonSelect = document.getElementById('season-select');
+        const standingsBody = document.getElementById('standings-body');
+        const standingsHeader = document.getElementById('standings-header');
+        const draftBody = document.getElementById('draft-body');
+        const draftHeader = document.getElementById('draft-header');
+        const transactionsBody = document.getElementById('transactions-body');
+        const transactionsHeader = document.getElementById('transactions-header');
+        const winnersBracketBody = document.getElementById('winners-bracket-body');
+        const winnersBracketHeader = document.getElementById('winners-bracket-header');
+        const losersBracketBody = document.getElementById('losers-bracket-body');
+        const losersBracketHeader = document.getElementById('losers-bracket-header');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const contentContainer = document.getElementById('content-container');
+        const championNameEl = document.getElementById('champion-name');
+        const sackoNameEl = document.getElementById('sacko-name');
+        const sackoVideoSection = document.getElementById('sacko-punishment-video');
+        const sackoVideoFrame = document.getElementById('sacko-video-frame');
+        
+        let allData = {};
+
+        async function fetchAndParseCSV(url) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const text = await response.text();
+                const rows = text.split('\n').map(row => row.split(','));
+                const headers = rows[0].map(h => h.trim());
+                const data = rows.slice(1).filter(row => row.length === headers.length && row.join('').trim() !== '').map(row => {
+                    const obj = {};
+                    headers.forEach((header, i) => {
+                        obj[header] = row[i]?.trim();
+                    });
+                    return obj;
+                });
+                return { headers, data };
+            } catch (error) {
+                console.error('Error fetching or parsing CSV:', error);
+                return { headers: [], data: [] };
+            }
+        }
+
+        function renderTable(tableBody, tableHeader, data, headers) {
+            tableHeader.innerHTML = '';
+            tableBody.innerHTML = '';
+
+            if (headers.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="100%" class="p-4 text-center text-gray-500">No data available for this season.</td></tr>';
+                return;
+            }
+
+            const headerHtml = headers.map(header => `<th class="p-3">${header}</th>`).join('');
+            tableHeader.innerHTML = headerHtml;
+
+            const bodyHtml = data.map(row => {
+                const cells = headers.map(header => {
+                    let cellValue = row[header];
+                    if (header === 'Points For' || header === 'Points Against') {
+                        const numericValue = parseFloat(cellValue);
+                        if (!isNaN(numericValue)) {
+                            cellValue = numericValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                        }
+                    }
+                    return `<td class="p-3">${cellValue}</td>`;
+                }).join('');
+                return `<tr class="border-b border-gray-700">${cells}</tr>`;
+            }).join('');
+            tableBody.innerHTML = bodyHtml;
+        }
+
+        async function loadData(year) {
+            loadingSpinner.classList.remove('hidden');
+            contentContainer.classList.add('hidden');
+
+            const filteredStandings = allData.standings.data.filter(row => row.Year === year);
+            let filteredDraft = allData.draft.data.filter(row => row.Year === year);
+            let filteredTransactions = allData.transactions.data.filter(row => row.Year === year);
+            const filteredPlayoff = allData.playoff.data.filter(row => row.Year === year);
+            const videoData = allData['sacko-videos'].data.find(row => row.Year === year);
+            
+            // Find Champion and Sacko
+            const championMatchup = filteredPlayoff.find(matchup => matchup['Matchup Name'] === 'Championship');
+            let champion = championMatchup ? championMatchup.Winner : 'N/A';
+
+            const sackoMatchup = filteredPlayoff.find(matchup => matchup['Matchup Name'] === 'Sacko');
+            let sacko = sackoMatchup ? sackoMatchup.Loser : 'N/A';
+            
+            championNameEl.textContent = champion;
+            sackoNameEl.textContent = sacko;
+
+            // Show/Hide Sacko Video
+            if (videoData && videoData.Link) {
+                sackoVideoSection.classList.remove('hidden');
+                sackoVideoFrame.src = videoData.Link;
+            } else {
+                sackoVideoSection.classList.add('hidden');
+                sackoVideoFrame.src = '';
+            }
+            
+            // Filter and render Playoff Brackets
+            const winnersBracket = filteredPlayoff.filter(row => row.Bracket === 'Winners').map(row => {
+                return { 'Matchup Name': row['Matchup Name'], 'Home': row['Team 1'], 'Away': row['Team 2'], 'Winner': row.Winner };
+            });
+            const losersBracket = filteredPlayoff.filter(row => row.Bracket === 'Losers').map(row => {
+                return { 'Matchup Name': row['Matchup Name'], 'Home': row['Team 1'], 'Away': row['Team 2'], 'Winner': row.Winner };
+            });
+            const playoffHeaders = ['Matchup Name', 'Home', 'Away', 'Winner'];
+
+            renderTable(standingsBody, standingsHeader, filteredStandings, allData.standings.headers);
+            renderTable(draftBody, draftHeader, filteredDraft, allData.draft.headers);
+            renderTable(transactionsBody, transactionsHeader, filteredTransactions, allData.transactions.headers);
+            renderTable(winnersBracketBody, winnersBracketHeader, winnersBracket, playoffHeaders);
+            renderTable(losersBracketBody, losersBracketHeader, losersBracket, playoffHeaders);
+
+            loadingSpinner.classList.add('hidden');
+            contentContainer.classList.remove('hidden');
+        }
+
+        async function initializeData() {
+            loadingSpinner.classList.remove('hidden');
+            contentContainer.classList.add('hidden');
+
+            const [
+                standingsResponse,
+                draftResponse,
+                transactionsResponse,
+                playoffResponse,
+                videoResponse
+            ] = await Promise.all([
+                fetchAndParseCSV(dataUrls.standings),
+                fetchAndParseCSV(dataUrls.draft),
+                fetchAndParseCSV(dataUrls.transactions),
+                fetchAndParseCSV(dataUrls.playoff),
+                fetchAndParseCSV(dataUrls['sacko-videos']),
+            ]);
+
+            allData.standings = standingsResponse;
+            allData.draft = draftResponse;
+            allData.transactions = transactionsResponse;
+            allData.playoff = playoffResponse;
+            allData['sacko-videos'] = videoResponse;
+            
+            loadingSpinner.classList.add('hidden');
+            contentContainer.classList.remove('hidden');
+            loadData(seasonSelect.value);
+        }
+
+        seasonSelect.addEventListener('change', (e) => {
+            const selectedYear = e.target.value;
+            loadData(selectedYear);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeData();
+        });
+    </script>
+</body>
+</html>
