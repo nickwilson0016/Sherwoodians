@@ -252,7 +252,8 @@
         async function loadData() {
             loadingSpinner.classList.remove('hidden');
             contentContainer.classList.add('hidden');
-
+        
+        //Update year when adding new league year
             const year = '2023';
 
             const filteredStandings = allData.standings.data.filter(row => row.Year === year);
