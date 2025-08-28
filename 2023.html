@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- This is a note: The title of the page shows the current season -->
     <title>Fantasy League History - 2023 Season</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
@@ -20,6 +21,7 @@
 
         <header class="text-center mb-12">
             <h1 class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#FF4E50] via-[#FC913A] to-[#F9D423]">League Legacy Dashboard</h1>
+            <!-- This is a note: The subtitle also indicates the current season -->
             <p class="text-xl text-gray-400 mt-2">2023 Season</p>
         </header>
         
@@ -176,8 +178,7 @@
             'playoff': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSAf3ZlRSnJcgtKB1tQa_YaJqnkOVNQYRiEUiI92domLwNVqdIYNenzDWEouPYiNu98RJ7pVz9s9ggQ/pub?gid=0&single=true&output=csv',
             'sacko-videos': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4zmNBKc5W7O2Cz13fsPqUXFV7E0v4MXHOSQx3FUt9MCMhN5_CRk8db5V4kh6nh_YIQDyd55lpnGN-/pub?gid=0&single=true&output=csv'
         };
-
-        const seasonSelect = '2023'            //document.getElementById('season-select');
+        
         const standingsBody = document.getElementById('standings-body');
         const standingsHeader = document.getElementById('standings-header');
         const draftBody = document.getElementById('draft-body');
@@ -248,27 +249,28 @@
             tableBody.innerHTML = bodyHtml;
         }
 
-        async function loadData(year) {
+        async function loadData() {
             loadingSpinner.classList.remove('hidden');
             contentContainer.classList.add('hidden');
 
+            const year = '2023';
+
             const filteredStandings = allData.standings.data.filter(row => row.Year === year);
-            let filteredDraft = allData.draft.data.filter(row => row.Year === year);
-            let filteredTransactions = allData.transactions.data.filter(row => row.Year === year);
             const filteredPlayoff = allData.playoff.data.filter(row => row.Year === year);
-            const videoData = allData['sacko-videos'].data.find(row => row.Year === year);
-            
+            const filteredDraft = allData.draft.data.filter(row => row.Year === year);
+            const filteredTransactions = allData.transactions.data.filter(row => row.Year === year);
+
             // Find Champion and Sacko
             const championMatchup = filteredPlayoff.find(matchup => matchup['Matchup Name'] === 'Championship');
             let champion = championMatchup ? championMatchup.Winner : 'N/A';
-
             const sackoMatchup = filteredPlayoff.find(matchup => matchup['Matchup Name'] === 'Sacko');
             let sacko = sackoMatchup ? sackoMatchup.Loser : 'N/A';
             
             championNameEl.textContent = champion;
             sackoNameEl.textContent = sacko;
-
+            
             // Show/Hide Sacko Video
+            const videoData = allData['sacko-videos'].data.find(row => row.Year === year);
             if (videoData && videoData.Link) {
                 sackoVideoSection.classList.remove('hidden');
                 sackoVideoFrame.src = videoData.Link;
@@ -285,7 +287,7 @@
                 return { 'Matchup Name': row['Matchup Name'], 'Home': row['Team 1'], 'Away': row['Team 2'], 'Winner': row.Winner };
             });
             const playoffHeaders = ['Matchup Name', 'Home', 'Away', 'Winner'];
-
+            
             renderTable(standingsBody, standingsHeader, filteredStandings, allData.standings.headers);
             renderTable(draftBody, draftHeader, filteredDraft, allData.draft.headers);
             renderTable(transactionsBody, transactionsHeader, filteredTransactions, allData.transactions.headers);
@@ -322,13 +324,8 @@
             
             loadingSpinner.classList.add('hidden');
             contentContainer.classList.remove('hidden');
-            loadData(seasonSelect.value);
+            loadData();
         }
-
-        seasonSelect.addEventListener('change', (e) => {
-            const selectedYear = e.target.value;
-            loadData(selectedYear);
-        });
 
         document.addEventListener('DOMContentLoaded', () => {
             initializeData();
