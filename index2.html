@@ -262,15 +262,19 @@
             });
 
             const allTimeStandingsData = Object.values(allTimeStandings).map(team => {
+                const totalGames = team['Wins'] + team['Losses'];
+                const winningPercentage = totalGames > 0 ? (team['Wins'] / totalGames).toFixed(3).substring(1) : '.000';
                 return {
                     'Team Name': team['Team Name'],
                     'Wins': team['Wins'],
                     'Losses': team['Losses'],
+                    'Winning %': winningPercentage,
                     'Points For': team['Points For'].toFixed(2),
                     'Points Against': team['Points Against'].toFixed(2)
                 };
             });
-            const allTimeStandingsHeaders = ['Team Name', 'Wins', 'Losses', 'Points For', 'Points Against'];
+            const allTimeStandingsHeaders = ['Team Name', 'Wins', 'Losses', 'Winning %', 'Points For', 'Points Against'];
+            allTimeStandingsData.sort((a, b) => parseFloat(b['Winning %']) - parseFloat(a['Winning %']));
             renderTable(standingsBody, standingsHeader, allTimeStandingsData, allTimeStandingsHeaders);
             
             const draftYears = Array.from(new Set(allData.draft.data.map(row => row.Year))).sort((a, b) => b - a);
