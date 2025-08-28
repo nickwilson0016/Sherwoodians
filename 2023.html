@@ -25,9 +25,6 @@
             <p class="text-xl text-gray-400 mt-2">2023 Season</p>
         </header>
         
-        
-        <!-- This is the menu bar -->
-        <!-- Formatting is already provided in the code below. To make the background gray look for line doesn't doesn't have 'Hover' and copy that-->
         <nav class="flex justify-center flex-wrap gap-2 md:gap-4 mb-12">
             <a href="index2.html" class="px-4 py-2 rounded-lg font-bold text-gray-300 hover:bg-gray-700 transition-colors duration-200">Home</a>
             <a href="2024.html" class="px-4 py-2 rounded-lg font-bold text-gray-300 hover:bg-gray-700 transition-colors duration-200">2024</a>
@@ -103,20 +100,12 @@
                             <option value="All">All Rounds</option>
                         </select>
                     </div>
-                    
                     <div class="flex items-center">
-                        <label for="draft-team-select" class="font-bold mr-2 text-gray-300">Filter by Team:</label>
-                        <select id="draft-team-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
-                            <option value="All">All Teams</option>
-                        </select>
-                    </div>
-                    
-                    <!-- <div class="flex items-center">
                         <label for="team-name-select" class="font-bold mr-2 text-gray-300">Filter by Team:</label>
                         <select id="team-name-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
                             <option value="All">All Teams</option>
                         </select>
-                    </div> -->
+                    </div>
                     <div class="flex-1">
                         <label for="player-search" class="sr-only">Search for Player</label>
                         <input type="text" id="player-search" placeholder="Search Player Name" class="w-full p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200 placeholder-gray-400">
@@ -170,6 +159,14 @@
                     </table>
                 </div>
             </section>
+            
+            <section id="sacko-punishment-video" class="bg-gray-800 rounded-lg shadow-2xl p-6 hidden">
+                <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">Sacko Punishment</h2>
+                <div class="video-container relative pb-[56.25%] h-0 overflow-hidden max-w-full">
+                    <iframe id="sacko-video-frame" class="absolute top-0 left-0 w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </section>
+
         </div>
 
         <div id="loading-spinner" class="text-center text-xl text-gray-400 mt-12 hidden">
@@ -189,7 +186,14 @@
             'playoff': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSAf3ZlRSnJcgtKB1tQa_YaJqnkOVNQYRiEUiI92domLwNVqdIYNenzDWEouPYiNu98RJ7pVz9s9ggQ/pub?gid=0&single=true&output=csv',
             'sacko-videos': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4zmNBKc5W7O2Cz13fsPqUXFV7E0v4MXHOSQx3FUt9MCMhN5_CRk8db5V4kh6nh_YIQDyd55lpnGN-/pub?gid=0&single=true&output=csv'
         };
-        
+
+        const draftRoundSelect = document.getElementById('round-select');
+        const draftTeamSelect = document.getElementById('team-name-select');
+        const playerSearchInput = document.getElementById('player-search');
+        const transactionWeekSelect = document.getElementById('transaction-week-select');
+        const transactionTypeSelect = document.getElementById('transaction-type-select');
+        const transactionTeamSelect = document.getElementById('transaction-team-select');
+        const transactionPlayerSearchInput = document.getElementById('transaction-player-search');
         const standingsBody = document.getElementById('standings-body');
         const standingsHeader = document.getElementById('standings-header');
         const draftBody = document.getElementById('draft-body');
@@ -208,6 +212,13 @@
         const sackoVideoFrame = document.getElementById('sacko-video-frame');
         
         let allData = {};
+        let currentDraftRound = 'All';
+        let currentDraftTeam = 'All';
+        let currentPlayerSearch = '';
+        let currentTransactionWeek = 'All';
+        let currentTransactionType = 'All';
+        let currentTransactionTeam = 'All';
+        let currentTransactionPlayerSearch = '';
 
         async function fetchAndParseCSV(url) {
             try {
@@ -263,14 +274,73 @@
         async function loadData() {
             loadingSpinner.classList.remove('hidden');
             contentContainer.classList.add('hidden');
-        
-        //Update year when adding new league year
+            // Update the year
             const year = '2023';
 
             const filteredStandings = allData.standings.data.filter(row => row.Year === year);
+            let filteredDraft = allData.draft.data.filter(row => row.Year === year);
+            let filteredTransactions = allData.transactions.data.filter(row => row.Year === year);
             const filteredPlayoff = allData.playoff.data.filter(row => row.Year === year);
-            const filteredDraft = allData.draft.data.filter(row => row.Year === year);
-            const filteredTransactions = allData.transactions.data.filter(row => row.Year === year);
+            
+            // Populate draft filter dropdowns
+            const teams = new Set(allData.draft.data.filter(row => row.Year === year).map(row => row['Team Name']));
+            draftTeamSelect.innerHTML = '<option value="All">All Teams</option>' + Array.from(teams).sort().map(team => `<option value="${team}">${team}</option>`).join('');
+            draftTeamSelect.value = currentDraftTeam;
+            
+            const rounds = new Set(allData.draft.data.filter(row => row.Year === year).map(row => row.Round));
+            draftRoundSelect.innerHTML = '<option value="All">All Rounds</option>' + Array.from(rounds).sort((a,b) => a - b).map(round => `<option value="${round}">Round ${round}</option>`).join('');
+            draftRoundSelect.value = currentDraftRound;
+
+            // Apply draft filters
+            if (currentDraftRound !== 'All') {
+                filteredDraft = filteredDraft.filter(row => row.Round === currentDraftRound);
+            }
+            if (currentDraftTeam !== 'All') {
+                filteredDraft = filteredDraft.filter(row => row['Team Name'] === currentDraftTeam);
+            }
+            if (currentPlayerSearch) {
+                const searchTerm = currentPlayerSearch.toLowerCase();
+                filteredDraft = filteredDraft.filter(row => row['Player Name'].toLowerCase().includes(searchTerm));
+            }
+            
+            // Populate transaction filter dropdowns
+            const weeks = new Set(allData.transactions.data.filter(row => row.Year === year).map(row => row.Week));
+            transactionWeekSelect.innerHTML = '<option value="All">All Weeks</option>' + Array.from(weeks).sort((a,b) => a - b).map(week => `<option value="${week}">Week ${week}</option>`).join('');
+            transactionWeekSelect.value = currentTransactionWeek;
+
+            const types = new Set(allData.transactions.data.filter(row => row.Year === year).map(row => row.Type));
+            transactionTypeSelect.innerHTML = '<option value="All">All Types</option>' + Array.from(types).sort().map(type => `<option value="${type}">${type}</option>`).join('');
+            transactionTypeSelect.value = currentTransactionType;
+            
+            const teamsInvolved = new Set(allData.transactions.data.filter(row => row.Year === year).flatMap(row => row['Teams Involved'].split(',').map(team => team.trim())));
+            transactionTeamSelect.innerHTML = '<option value="All">All Teams</option>' + Array.from(teamsInvolved).sort().map(team => `<option value="${team}">${team}</option>`).join('');
+            transactionTeamSelect.value = currentTransactionTeam;
+
+            // Apply transaction filters
+            if (currentTransactionWeek !== 'All') {
+                filteredTransactions = filteredTransactions.filter(row => row.Week === currentTransactionWeek);
+            }
+            if (currentTransactionType !== 'All') {
+                filteredTransactions = filteredTransactions.filter(row => row.Type === currentTransactionType);
+            }
+            
+            if (currentTransactionTeam !== 'All') {
+                filteredTransactions = filteredTransactions.filter(row => row['Teams Involved'].includes(currentTransactionTeam));
+            }
+            if (currentTransactionPlayerSearch) {
+                const searchTerm = currentTransactionPlayerSearch.toLowerCase();
+                filteredTransactions = filteredTransactions.filter(row => row['Players Added'].toLowerCase().includes(searchTerm) || row['Players Dropped'].toLowerCase().includes(searchTerm));
+            }
+
+            // Sort transactions by Transaction ID (chronologically)
+            filteredTransactions.sort((a, b) => {
+                const idA = a['Transaction ID'] ? parseInt(a['Transaction ID']) : 0;
+                const idB = b['Transaction ID'] ? parseInt(b['Transaction ID']) : 0;
+                return idA - idB;
+            });
+            
+            // Filter out failed transactions
+            filteredTransactions = filteredTransactions.filter(row => row.Status !== 'failed');
 
             // Find Champion and Sacko
             const championMatchup = filteredPlayoff.find(matchup => matchup['Matchup Name'] === 'Championship');
@@ -280,7 +350,7 @@
             
             championNameEl.textContent = champion;
             sackoNameEl.textContent = sacko;
-            
+
             // Show/Hide Sacko Video
             const videoData = allData['sacko-videos'].data.find(row => row.Year === year);
             if (videoData && videoData.Link) {
@@ -299,7 +369,7 @@
                 return { 'Matchup Name': row['Matchup Name'], 'Home': row['Team 1'], 'Away': row['Team 2'], 'Winner': row.Winner };
             });
             const playoffHeaders = ['Matchup Name', 'Home', 'Away', 'Winner'];
-            
+
             renderTable(standingsBody, standingsHeader, filteredStandings, allData.standings.headers);
             renderTable(draftBody, draftHeader, filteredDraft, allData.draft.headers);
             renderTable(transactionsBody, transactionsHeader, filteredTransactions, allData.transactions.headers);
@@ -342,6 +412,43 @@
         document.addEventListener('DOMContentLoaded', () => {
             initializeData();
         });
+
+        draftRoundSelect.addEventListener('change', (e) => {
+            currentDraftRound = e.target.value;
+            loadData();
+        });
+
+        draftTeamSelect.addEventListener('change', (e) => {
+            currentDraftTeam = e.target.value;
+            loadData();
+        });
+
+        playerSearchInput.addEventListener('input', (e) => {
+            currentPlayerSearch = e.target.value;
+            loadData();
+        });
+
+        transactionWeekSelect.addEventListener('change', (e) => {
+            currentTransactionWeek = e.target.value;
+            loadData();
+        });
+        
+        transactionTypeSelect.addEventListener('change', (e) => {
+            currentTransactionType = e.target.value;
+            loadData();
+        });
+
+        transactionTeamSelect.addEventListener('change', (e) => {
+            currentTransactionTeam = e.target.value;
+            loadData();
+        });
+
+        transactionPlayerSearchInput.addEventListener('input', (e) => {
+            currentTransactionPlayerSearch = e.target.value;
+            loadData();
+        });
+
+        
     </script>
 </body>
 </html>
