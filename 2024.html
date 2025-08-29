@@ -52,13 +52,15 @@
                     <iframe id="hype-video-frame" class="absolute top-0 left-0 w-full h-full" src="https://drive.google.com/file/d/1W3UygS29CiA7WGb27To70HKMXXmlia5j/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </section>
-           
-            <!-- <section id="breaking-news-section" class="bg-gray-800 rounded-lg shadow-2xl p-6 mb-8">
-                <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">Breaking News</h2>
-                <div class="flex justify-center">
-                    <iframe src="https://drive.google.com/file/d/1W3UygS29CiA7WGb27To70HKMXXmlia5j/preview" width="640" height="480" allow="autoplay"></iframe>
+
+            <!-- LM Note Section -->
+            <section id="lm-note-section" class="bg-gray-800 rounded-lg shadow-2xl p-6 mb-8">
+                <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">LM Note</h2>
+                <div class="doc-container">
+                    <iframe id="lm-note-frame" src="https://docs.google.com/document/d/e/2PACX-1vQgBBFkl2emHK1pQ_hffI91LsLa8xw0aCa2iyuQa4_BFpVXW4-Fmpu8Riewttw8Ae9PLLbeJLY5IOw0/pub" frameborder="0"></iframe>
                 </div>
-            </section> -->
+            </section>
+
             
             <!-- Season Hype Video Update with New Video Link -->
            <section id="hype-video-section" class="bg-gray-800 rounded-lg shadow-2xl p-6 mb-8">
@@ -237,6 +239,8 @@
         const sackoNameEl = document.getElementById('sacko-name');
         const sackoVideoSection = document.getElementById('sacko-punishment-video');
         const sackoVideoFrame = document.getElementById('sacko-video-frame');
+        const lmNoteSection = document.getElementById('lm-note-section');
+        const lmNoteFrame = document.getElementById('lm-note-frame');
         
         let allData = {};
         let currentDraftRound = 'All';
