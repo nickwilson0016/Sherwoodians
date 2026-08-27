@@ -5,216 +5,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fantasy League History Dashboard</title>
+    <title>Sherwoodians | Fantasy League Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #1A202C;
-            color: #E2E8F0;
+            background-color: #0f172a; /* Richer, sleeker slate background */
+            color: #f8fafc;
+        }
+        /* Custom scrollbar for tables */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
         }
     </style>
 </head>
-    
-<body class="p-4 sm:p-8">
+<body class="p-4 sm:p-8 selection:bg-[#FC913A] selection:text-white">
 
-    <!-- This is the start of the new code with the menu bar -->
-    <div class="max-w-7xl mx-auto">
+    <div class="max-w-7xl mx-auto space-y-12">
 
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#FF4E50] via-[#FC913A] to-[#F9D423]">League Legacy Dashboard</h1>
-            <p class="text-xl text-gray-400 mt-2">An Interactive Chronicle of Our League's History</p>
+        <header class="text-center mt-8 mb-12">
+            <h1 class="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#FF4E50] via-[#FC913A] to-[#F9D423] drop-shadow-sm tracking-tight">
+                Sherwoodians Legacy
+            </h1>
+            <p class="text-xl text-slate-400 mt-4 font-light tracking-wide uppercase">All-Time League History Dashboard</p>
         </header>
-        
-        <nav class="flex justify-center flex-wrap gap-2 md:gap-4 mb-12">
-            <a href="index.html" class="px-4 py-2 rounded-lg font-bold bg-gray-700 text-white transition-colors duration-200">Home</a>
-            <a href="index2.html" class="px-4 py-2 rounded-lg font-bold text-gray-300 hover:bg-gray-700 transition-colors duration-200">2024</a>
-            <a href="2023.html" class="px-4 py-2 rounded-lg font-bold text-gray-300 hover:bg-gray-700 transition-colors duration-200">2023</a>
-            <a href="2022.html" class="px-4 py-2 rounded-lg font-bold text-gray-300 hover:bg-gray-700 transition-colors duration-200">2022</a>
-            <a href="2021.html" class="px-4 py-2 rounded-lg font-bold text-gray-300 hover:bg-gray-700 transition-colors duration-200">2021</a>
+
+        <nav class="flex justify-center flex-wrap gap-3 mb-12">
+            <a href="#" class="px-6 py-2.5 rounded-full font-semibold text-sm bg-gradient-to-r from-slate-700 to-slate-800 text-white shadow-lg border border-slate-600 hover:border-[#FC913A] transition-all duration-300">
+                Dashboard Home
+            </a>
+            <a href="#lm-note-section" class="px-6 py-2.5 rounded-full font-semibold text-sm bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition-all duration-300">
+                LM Notes
+            </a>
+            <a href="#standings-section" class="px-6 py-2.5 rounded-full font-semibold text-sm bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition-all duration-300">
+                Standings
+            </a>
+            <a href="#draft-section" class="px-6 py-2.5 rounded-full font-semibold text-sm bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition-all duration-300">
+                Drafts & Transactions
+            </a>
         </nav>
 
-        <section class="bg-gray-800 rounded-lg shadow-2xl p-6">
-            <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">League History at a Glance</h2>
-            <p class="text-gray-300 mb-6">Welcome to the official chronicle of our fantasy football league. Explore all-time records, recent highlights, and the complete history of our league's seasons.</p>
-            <!-- All-time stats and content will go here -->
-        </section>
-        
-<!--  This is the original code with the select a season drop down
-        <div class="max-w-7xl mx-auto">
-
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#FF4E50] via-[#FC913A] to-[#F9D423]">League Legacy Dashboard</h1>
-            <p class="text-xl text-gray-400 mt-2">An Interactive Chronicle of Our League's History</p>
-        </header>
-
-        <section id="season-selector" class="mb-12 flex justify-center">
-            <div class="mb-8">
-                <label for="season-select" class="font-bold mr-4">Select a Season:</label>
-                <select id="season-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
-                    <option value="2025">2025</option>
-                    <option value="2024">2024</option>
-                    <option value="2023">2023</option>
-                    <option value="2022">2022</option>
-                    <option value="2021">2021</option>
-                </select>
-            </div>
-        </section> -->
-
-        <div id="content-container">
-            <section id="season-honors" class="bg-gray-800 rounded-lg shadow-2xl p-6 mb-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-gray-700 rounded-lg p-6 text-center shadow-lg">
-                    <h3 class="text-2xl font-bold mb-2 text-[#FFD166]">Season Champion</h3>
-                    <p id="champion-name" class="text-4xl font-black text-white">Loading...</p>
+        <div id="content-container" class="space-y-8">
+            
+            <section id="season-honors" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 text-center shadow-xl hover:border-[#FFD166]/50 transition-colors duration-300">
+                    <h3 class="text-sm font-semibold uppercase tracking-widest mb-2 text-[#FFD166]">Reigning Champion</h3>
+                    <p id="champion-name" class="text-4xl font-black text-white drop-shadow-md">Loading...</p>
                 </div>
-                <div class="bg-gray-700 rounded-lg p-6 text-center shadow-lg">
-                    <h3 class="text-2xl font-bold mb-2 text-[#F9D423]">Sacko</h3>
-                    <p id="sacko-name" class="text-4xl font-black text-white">Loading...</p>
+                <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 text-center shadow-xl hover:border-[#F9D423]/50 transition-colors duration-300">
+                    <h3 class="text-sm font-semibold uppercase tracking-widest mb-2 text-[#F9D423]">Reigning Sacko</h3>
+                    <p id="sacko-name" class="text-4xl font-black text-white drop-shadow-md">Loading...</p>
                 </div>
             </section>
             
-            <section id="standings-section" class="bg-gray-800 rounded-lg shadow-2xl p-6 mb-8">
-                <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">Final Standings</h2>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full text-left">
-                        <thead class="bg-gray-700 text-gray-300">
+            <section id="lm-note-section" class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl shadow-xl overflow-hidden relative">
+                <div class="h-1 w-full bg-gradient-to-r from-[#FF4E50] to-[#F9D423]"></div>
+                <div class="p-8">
+                    <h2 class="text-2xl font-bold mb-6 text-white flex items-center gap-3">
+                        <svg class="w-6 h-6 text-[#F9D423]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                        Commissioner's Desk
+                    </h2>
+                    
+                    <div class="bg-slate-900/50 rounded-xl p-6 border border-slate-700/30">
+                        <h3 class="text-xl font-bold mb-4 text-[#FC913A]">And So it Begins</h3>
+                        
+                        <p class="text-slate-300 leading-relaxed whitespace-pre-wrap">Sherwoodians Fantasy Football Draft. September 3rd, 2026. 8PM
+
+Looking forward to a great season. Just typing normally here drops it to a new line on the site!
+
+- Your Commish
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="standings-section" class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl shadow-xl p-8">
+                <h2 class="text-2xl font-bold mb-6 text-white">All-Time Standings</h2>
+                <div class="overflow-x-auto ring-1 ring-slate-700 rounded-xl">
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="bg-slate-900/80 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-700">
                             <tr id="standings-header"></tr>
                         </thead>
-                        <tbody id="standings-body">
+                        <tbody id="standings-body" class="divide-y divide-slate-700/50 text-slate-200">
                         </tbody>
                     </table>
                 </div>
             </section>
     
-            <section id="playoff-section" class="bg-gray-800 rounded-lg shadow-2xl p-6 mb-8">
-                <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">Playoff Bracket</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="overflow-x-auto">
-                        <h3 class="text-xl font-bold mb-2 text-gray-300">Winners Bracket</h3>
-                        <table class="min-w-full text-left">
-                            <thead class="bg-gray-700 text-gray-300">
-                                <tr id="winners-bracket-header"></tr>
-                            </thead>
-                            <tbody id="winners-bracket-body">
-                            </tbody>
-                        </table>
+            <section id="draft-section" class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl shadow-xl p-8">
+                <h2 class="text-2xl font-bold mb-6 text-white">Draft Results</h2>
+                
+                <div class="mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-slate-900/50 p-4 rounded-xl border border-slate-700/30">
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Year</label>
+                        <select id="draft-year-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] focus:border-transparent outline-none text-slate-200 text-sm transition-all"></select>
                     </div>
-                    <div class="overflow-x-auto">
-                        <h3 class="text-xl font-bold mb-2 text-gray-300">Losers Bracket</h3>
-                        <table class="min-w-full text-left">
-                            <thead class="bg-gray-700 text-gray-300">
-                                <tr id="losers-bracket-header"></tr>
-                            </thead>
-                            <tbody id="losers-bracket-body">
-                            </tbody>
-                        </table>
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Round</label>
+                        <select id="draft-round-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] focus:border-transparent outline-none text-slate-200 text-sm transition-all"></select>
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Team</label>
+                        <select id="draft-team-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] focus:border-transparent outline-none text-slate-200 text-sm transition-all"></select>
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Player Search</label>
+                        <input type="text" id="draft-player-search" placeholder="Search name..." class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] focus:border-transparent outline-none text-slate-200 text-sm placeholder-slate-500 transition-all">
                     </div>
                 </div>
-            </section>
-    
-            <section id="draft-section" class="bg-gray-800 rounded-lg shadow-2xl p-6 mb-8">
-                <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">Draft Results</h2>
-                <div class="mb-4 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                    <div class="flex items-center">
-                        <label for="round-select" class="font-bold mr-2 text-gray-300">Filter by Round:</label>
-                        <select id="round-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
-                            <option value="All">All Rounds</option>
-                        </select>
-                    </div>
-                    <div class="flex items-center">
-                        <label for="team-name-select" class="font-bold mr-2 text-gray-300">Filter by Team:</label>
-                        <select id="team-name-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
-                            <option value="All">All Teams</option>
-                        </select>
-                    </div>
-                    <div class="flex-1">
-                        <label for="player-search" class="sr-only">Search for Player</label>
-                        <input type="text" id="player-search" placeholder="Search Player Name" class="w-full p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200 placeholder-gray-400">
-                    </div>
-                </div>
-                <div class="overflow-x-auto max-h-96 overflow-y-auto">
-                    <table class="min-w-full text-left">
-                        <thead class="bg-gray-700 text-gray-300">
+
+                <div class="overflow-x-auto ring-1 ring-slate-700 rounded-xl max-h-[500px] overflow-y-auto">
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="bg-slate-900/80 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-700 sticky top-0 z-10">
                             <tr id="draft-header"></tr>
                         </thead>
-                        <tbody id="draft-body">
+                        <tbody id="draft-body" class="divide-y divide-slate-700/50 text-slate-200">
                         </tbody>
                     </table>
                 </div>
             </section>
-    
-            <section id="transactions-section" class="bg-gray-800 rounded-lg shadow-2xl p-6">
-                <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">Transactions</h2>
-                <div class="mb-4 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                    <div class="flex items-center">
-                        <label for="transaction-week-select" class="font-bold mr-2 text-gray-300">Filter by Week:</label>
-                        <select id="transaction-week-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
-                            <option value="All">All Weeks</option>
-                        </select>
+
+            <section id="transactions-section" class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl shadow-xl p-8">
+                <h2 class="text-2xl font-bold mb-6 text-white">Transactions Hub</h2>
+                
+                <div class="mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 bg-slate-900/50 p-4 rounded-xl border border-slate-700/30">
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Year</label>
+                        <select id="transaction-year-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] outline-none text-slate-200 text-sm transition-all"></select>
                     </div>
-                    <div class="flex items-center">
-                        <label for="transaction-type-select" class="font-bold mr-2 text-gray-300">Type:</label>
-                        <select id="transaction-type-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
-                            <option value="All">All Types</option>
-                        </select>
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Week</label>
+                        <select id="transaction-week-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] outline-none text-slate-200 text-sm transition-all"></select>
                     </div>
-                    
-                    <div class="flex items-center">
-                        <label for="transaction-team-select" class="font-bold mr-2 text-gray-300">Filter by Team:</label>
-                        <select id="transaction-team-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
-                            <option value="All">All Teams</option>
-                        </select>
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Type</label>
+                        <select id="transaction-type-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] outline-none text-slate-200 text-sm transition-all"></select>
                     </div>
-                    <div class="flex-1">
-                        <label for="transaction-player-search" class="sr-only">Search Player</label>
-                        <input type="text" id="transaction-player-search" placeholder="Search Player Name" class="w-full p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200 placeholder-gray-400">
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Team</label>
+                        <select id="transaction-team-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] outline-none text-slate-200 text-sm transition-all"></select>
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Player</label>
+                        <input type="text" id="transaction-player-search" placeholder="Search..." class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] outline-none text-slate-200 text-sm placeholder-slate-500 transition-all">
                     </div>
                 </div>
-                <div class="overflow-x-auto max-h-96 overflow-y-auto">
-                    <table class="min-w-full text-left">
-                        <thead class="bg-gray-700 text-gray-300">
+
+                <div class="overflow-x-auto ring-1 ring-slate-700 rounded-xl max-h-[500px] overflow-y-auto">
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="bg-slate-900/80 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-700 sticky top-0 z-10">
                             <tr id="transactions-header"></tr>
                         </thead>
-                        <tbody id="transactions-body">
+                        <tbody id="transactions-body" class="divide-y divide-slate-700/50 text-slate-200">
                         </tbody>
                     </table>
-                </div>
-            </section>
-            
-            <section id="sacko-punishment-video" class="bg-gray-800 rounded-lg shadow-2xl p-6 hidden">
-                <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">Sacko Punishment</h2>
-                <div class="video-container relative pb-[56.25%] h-0 overflow-hidden max-w-full">
-                    <iframe id="sacko-video-frame" class="absolute top-0 left-0 w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </section>
 
         </div>
 
-        <div id="loading-spinner" class="text-center text-xl text-gray-400 mt-12 hidden">
-            <svg class="animate-spin h-8 w-8 text-gray-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <div id="loading-spinner" class="text-center mt-20 hidden">
+            <svg class="animate-spin h-12 w-12 text-[#FC913A] mx-auto drop-shadow-lg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            <p class="mt-2">Loading data...</p>
+            <p class="mt-4 text-slate-400 font-medium tracking-wide animate-pulse">Pulling league data...</p>
         </div>
     </div>
 
     <script>
-        // URLs for your single, combined CSV files.
-        // You MUST replace these with the actual URLs for each published tab.
         const dataUrls = {
             'standings': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTXmw29UZh_a-p13chTl3EUiUx1ll9NGD014qj7tVC0snPjuHcvLL_SqUIisuCE9ysRPwigIrepqnJ-/pub?gid=0&single=true&output=csv',
             'draft': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQxG8wUhQIo6uXePQPQfmvZS-h0eOhWOWGV3TSerYYVVrWlaW59cdLe9rB_OqIalxkzuiDfNAa_5Gmu/pub?gid=763323686&single=true&output=csv',
             'transactions': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRu0Gxeepf1R4Upz0NjdfIKlziTDimChyiK3nW7KiSFKj-iqux5b3gk_I88TGJppYvHoW5XwhJuPND7/pub?gid=0&single=true&output=csv',
             'playoff': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSAf3ZlRSnJcgtKB1tQa_YaJqnkOVNQYRiEUiI92domLwNVqdIYNenzDWEouPYiNu98RJ7pVz9s9ggQ/pub?gid=0&single=true&output=csv',
-            'sacko-videos': 'YOUR_SACKO_VIDEO_CSV_URL'
+            'sacko-videos': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4zmNBKc5W7O2Cz13fsPqUXFV7E0v4MXHOSQx3FUt9MCMhN5_CRk8db5V4kh6nh_YIQDyd55lpnGN-/pub?gid=0&single=true&output=csv'
         };
 
-        const seasonSelect = document.getElementById('season-select');
-        const draftRoundSelect = document.getElementById('round-select');
-        const draftTeamSelect = document.getElementById('team-name-select');
-        const playerSearchInput = document.getElementById('player-search');
+        const draftYearSelect = document.getElementById('draft-year-select');
+        const draftRoundSelect = document.getElementById('draft-round-select');
+        const draftTeamSelect = document.getElementById('draft-team-select');
+        const draftPlayerSearchInput = document.getElementById('draft-player-search');
+        const transactionYearSelect = document.getElementById('transaction-year-select');
         const transactionWeekSelect = document.getElementById('transaction-week-select');
         const transactionTypeSelect = document.getElementById('transaction-type-select');
         const transactionTeamSelect = document.getElementById('transaction-team-select');
@@ -225,21 +210,17 @@
         const draftHeader = document.getElementById('draft-header');
         const transactionsBody = document.getElementById('transactions-body');
         const transactionsHeader = document.getElementById('transactions-header');
-        const winnersBracketBody = document.getElementById('winners-bracket-body');
-        const winnersBracketHeader = document.getElementById('winners-bracket-header');
-        const losersBracketBody = document.getElementById('losers-bracket-body');
-        const losersBracketHeader = document.getElementById('losers-bracket-header');
-        const loadingSpinner = document.getElementById('loading-spinner');
-        const contentContainer = document.getElementById('content-container');
         const championNameEl = document.getElementById('champion-name');
         const sackoNameEl = document.getElementById('sacko-name');
-        const sackoVideoSection = document.getElementById('sacko-punishment-video');
-        const sackoVideoFrame = document.getElementById('sacko-video-frame');
-        
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const contentContainer = document.getElementById('content-container');
+
         let allData = {};
+        let currentDraftYear = 'All';
         let currentDraftRound = 'All';
         let currentDraftTeam = 'All';
         let currentPlayerSearch = '';
+        let currentTransactionYear = 'All';
         let currentTransactionWeek = 'All';
         let currentTransactionType = 'All';
         let currentTransactionTeam = 'All';
@@ -267,17 +248,17 @@
                 return { headers: [], data: [] };
             }
         }
-
+        
         function renderTable(tableBody, tableHeader, data, headers) {
             tableHeader.innerHTML = '';
             tableBody.innerHTML = '';
 
             if (headers.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="100%" class="p-4 text-center text-gray-500">No data available for this season.</td></tr>';
+                tableBody.innerHTML = '<tr><td colspan="100%" class="p-6 text-center text-slate-500 italic">No data available.</td></tr>';
                 return;
             }
-
-            const headerHtml = headers.map(header => `<th class="p-3">${header}</th>`).join('');
+            
+            const headerHtml = headers.map(header => `<th class="px-6 py-4 font-semibold">${header}</th>`).join('');
             tableHeader.innerHTML = headerHtml;
 
             const bodyHtml = data.map(row => {
@@ -289,32 +270,73 @@
                             cellValue = numericValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                         }
                     }
-                    return `<td class="p-3">${cellValue}</td>`;
+                    return `<td class="px-6 py-4 hover:bg-slate-800/30 transition-colors">${cellValue}</td>`;
                 }).join('');
-                return `<tr class="border-b border-gray-700">${cells}</tr>`;
+                return `<tr>${cells}</tr>`;
             }).join('');
             tableBody.innerHTML = bodyHtml;
         }
 
-        async function loadData(year) {
+        async function loadData() {
             loadingSpinner.classList.remove('hidden');
             contentContainer.classList.add('hidden');
 
-            const filteredStandings = allData.standings.data.filter(row => row.Year === year);
-            let filteredDraft = allData.draft.data.filter(row => row.Year === year);
-            let filteredTransactions = allData.transactions.data.filter(row => row.Year === year);
-            const filteredPlayoff = allData.playoff.data.filter(row => row.Year === year);
+            const latestYear = allData.playoff.data.map(row => parseInt(row.Year)).sort((a,b) => b-a)[0].toString();
+            const championMatchup = allData.playoff.data.find(matchup => matchup.Year === latestYear && matchup['Matchup Name'] === 'Championship');
+            const sackoMatchup = allData.playoff.data.find(matchup => matchup.Year === latestYear && matchup['Matchup Name'] === 'Sacko');
+            
+            championNameEl.textContent = championMatchup ? championMatchup.Winner : 'N/A';
+            sackoNameEl.textContent = sackoMatchup ? sackoMatchup.Loser : 'N/A';
+            
+            const allTimeStandings = {};
+            allData.standings.data.forEach(row => {
+                if (!allTimeStandings[row['Team Name']]) {
+                    allTimeStandings[row['Team Name']] = { 'Team Name': row['Team Name'], 'Wins': 0, 'Losses': 0, 'Points For': 0, 'Points Against': 0 };
+                }
+                allTimeStandings[row['Team Name']]['Wins'] += parseInt(row.Wins);
+                allTimeStandings[row['Team Name']]['Losses'] += parseInt(row.Losses);
+                allTimeStandings[row['Team Name']]['Points For'] += parseFloat(row['Points For']);
+                allTimeStandings[row['Team Name']]['Points Against'] += parseFloat(row['Points Against']);
+            });
 
-            // Populate draft filter dropdowns
-            const teams = new Set(allData.draft.data.filter(row => row.Year === year).map(row => row['Team Name']));
-            draftTeamSelect.innerHTML = '<option value="All">All Teams</option>' + Array.from(teams).sort().map(team => `<option value="${team}">${team}</option>`).join('');
-            draftTeamSelect.value = currentDraftTeam;
+            const allTimeStandingsData = Object.values(allTimeStandings).map(team => {
+                const totalGames = team['Wins'] + team['Losses'];
+                const winningPercentage = totalGames > 0 ? (team['Wins'] / totalGames).toFixed(3).substring(1) : '.000';
+                return {
+                    'Team Name': team['Team Name'],
+                    'Wins': team['Wins'],
+                    'Losses': team['Losses'],
+                    'Winning %': winningPercentage,
+                    'Points For': team['Points For'].toFixed(2),
+                    'Points Against': team['Points Against'].toFixed(2)
+                };
+            });
+            const allTimeStandingsHeaders = ['Team Name', 'Wins', 'Losses', 'Winning %', 'Points For', 'Points Against'];
+            allTimeStandingsData.sort((a, b) => parseFloat(b['Winning %']) - parseFloat(a['Winning %']));
+            renderTable(standingsBody, standingsHeader, allTimeStandingsData, allTimeStandingsHeaders);
             
-            const rounds = new Set(allData.draft.data.filter(row => row.Year === year).map(row => row.Round));
-            draftRoundSelect.innerHTML = '<option value="All">All Rounds</option>' + Array.from(rounds).sort((a,b) => a - b).map(round => `<option value="${round}">Round ${round}</option>`).join('');
-            draftRoundSelect.value = currentDraftRound;
+            const draftYears = Array.from(new Set(allData.draft.data.map(row => row.Year))).sort((a, b) => b - a);
+            if (draftYearSelect) {
+                draftYearSelect.innerHTML = '<option value="All">All Years</option>' + draftYears.map(year => `<option value="${year}">${year}</option>`).join('');
+                draftYearSelect.value = currentDraftYear;
+            }
+
+            const draftRounds = Array.from(new Set(allData.draft.data.filter(row => row.Year === currentDraftYear || currentDraftYear === 'All').map(row => row.Round))).sort((a, b) => a - b);
+            if (draftRoundSelect) {
+                draftRoundSelect.innerHTML = '<option value="All">All Rounds</option>' + draftRounds.map(round => `<option value="${round}">Round ${round}</option>`).join('');
+                draftRoundSelect.value = currentDraftRound;
+            }
+
+            const draftTeams = Array.from(new Set(allData.draft.data.filter(row => row.Year === currentDraftYear || currentDraftYear === 'All').map(row => row['Team Name']))).sort();
+            if (draftTeamSelect) {
+                draftTeamSelect.innerHTML = '<option value="All">All Teams</option>' + draftTeams.map(team => `<option value="${team}">${team}</option>`).join('');
+                draftTeamSelect.value = currentDraftTeam;
+            }
             
-            // Apply draft filters
+            let filteredDraft = allData.draft.data;
+            if (currentDraftYear !== 'All') {
+                filteredDraft = filteredDraft.filter(row => row.Year === currentDraftYear);
+            }
             if (currentDraftRound !== 'All') {
                 filteredDraft = filteredDraft.filter(row => row.Round === currentDraftRound);
             }
@@ -325,28 +347,42 @@
                 const searchTerm = currentPlayerSearch.toLowerCase();
                 filteredDraft = filteredDraft.filter(row => row['Player Name'].toLowerCase().includes(searchTerm));
             }
+            renderTable(draftBody, draftHeader, filteredDraft, allData.draft.headers);
             
-            // Populate transaction filter dropdowns
-            const weeks = new Set(allData.transactions.data.filter(row => row.Year === year).map(row => row.Week));
-            transactionWeekSelect.innerHTML = '<option value="All">All Weeks</option>' + Array.from(weeks).sort((a,b) => a - b).map(week => `<option value="${week}">Week ${week}</option>`).join('');
-            transactionWeekSelect.value = currentTransactionWeek;
+            const transactionYears = Array.from(new Set(allData.transactions.data.map(row => row.Year))).sort((a,b) => b - a);
+            if (transactionYearSelect) {
+                transactionYearSelect.innerHTML = '<option value="All">All Years</option>' + transactionYears.map(year => `<option value="${year}">${year}</option>`).join('');
+                transactionYearSelect.value = currentTransactionYear;
+            }
 
-            const types = new Set(allData.transactions.data.filter(row => row.Year === year).map(row => row.Type));
-            transactionTypeSelect.innerHTML = '<option value="All">All Types</option>' + Array.from(types).sort().map(type => `<option value="${type}">${type}</option>`).join('');
-            transactionTypeSelect.value = currentTransactionType;
+            const transactionWeeks = Array.from(new Set(allData.transactions.data.filter(row => row.Year === currentTransactionYear || currentTransactionYear === 'All').map(row => row.Week))).sort((a,b) => a - b);
+            if (transactionWeekSelect) {
+                transactionWeekSelect.innerHTML = '<option value="All">All Weeks</option>' + transactionWeeks.map(week => `<option value="${week}">Week ${week}</option>`).join('');
+                transactionWeekSelect.value = currentTransactionWeek;
+            }
+
+            const transactionTypes = Array.from(new Set(allData.transactions.data.filter(row => row.Year === currentTransactionYear || currentTransactionYear === 'All').map(row => row.Type))).sort();
+            if (transactionTypeSelect) {
+                transactionTypeSelect.innerHTML = '<option value="All">All Types</option>' + transactionTypes.map(type => `<option value="${type}">${type}</option>`).join('');
+                transactionTypeSelect.value = currentTransactionType;
+            }
             
-            const teamsInvolved = new Set(allData.transactions.data.filter(row => row.Year === year).flatMap(row => row['Teams Involved'].split(',').map(team => team.trim())));
-            transactionTeamSelect.innerHTML = '<option value="All">All Teams</option>' + Array.from(teamsInvolved).sort().map(team => `<option value="${team}">${team}</option>`).join('');
-            transactionTeamSelect.value = currentTransactionTeam;
-
-            // Apply transaction filters
+            const transactionTeams = Array.from(new Set(allData.transactions.data.filter(row => row.Year === currentTransactionYear || currentTransactionYear === 'All').flatMap(row => row['Teams Involved'].split(',').map(team => team.trim())))).sort();
+            if (transactionTeamSelect) {
+                transactionTeamSelect.innerHTML = '<option value="All">All Teams</option>' + transactionTeams.map(team => `<option value="${team}">${team}</option>`).join('');
+                transactionTeamSelect.value = currentTransactionTeam;
+            }
+            
+            let filteredTransactions = allData.transactions.data;
+            if (currentTransactionYear !== 'All') {
+                filteredTransactions = filteredTransactions.filter(row => row.Year === currentTransactionYear);
+            }
             if (currentTransactionWeek !== 'All') {
                 filteredTransactions = filteredTransactions.filter(row => row.Week === currentTransactionWeek);
             }
             if (currentTransactionType !== 'All') {
                 filteredTransactions = filteredTransactions.filter(row => row.Type === currentTransactionType);
             }
-            
             if (currentTransactionTeam !== 'All') {
                 filteredTransactions = filteredTransactions.filter(row => row['Teams Involved'].includes(currentTransactionTeam));
             }
@@ -354,39 +390,13 @@
                 const searchTerm = currentTransactionPlayerSearch.toLowerCase();
                 filteredTransactions = filteredTransactions.filter(row => row['Players Added'].toLowerCase().includes(searchTerm) || row['Players Dropped'].toLowerCase().includes(searchTerm));
             }
-
-            // Sort transactions by Transaction ID (chronologically)
             filteredTransactions.sort((a, b) => {
                 const idA = a['Transaction ID'] ? parseInt(a['Transaction ID']) : 0;
                 const idB = b['Transaction ID'] ? parseInt(b['Transaction ID']) : 0;
                 return idA - idB;
             });
-            
-            // Filter out failed transactions
             filteredTransactions = filteredTransactions.filter(row => row.Status !== 'failed');
-
-            // Find Champion and Sacko
-            const champion = filteredPlayoff.find(matchup => matchup['Matchup Name'] === 'Championship')?.Winner;
-            const sackoMatch = filteredPlayoff.find(matchup => matchup['Matchup Name'] === 'Sacko');
-            const sacko = sackoMatch?.Loser;
-
-            championNameEl.textContent = champion || 'N/A';
-            sackoNameEl.textContent = sacko || 'N/A';
-            
-            // Filter and render Playoff Brackets
-            const winnersBracket = filteredPlayoff.filter(row => row.Bracket === 'Winners').map(row => {
-                return { 'Matchup Name': row['Matchup Name'], 'Home': row['Team 1'], 'Away': row['Team 2'], 'Winner': row.Winner };
-            });
-            const losersBracket = filteredPlayoff.filter(row => row.Bracket === 'Losers').map(row => {
-                return { 'Matchup Name': row['Matchup Name'], 'Home': row['Team 1'], 'Away': row['Team 2'], 'Winner': row.Winner };
-            });
-            const playoffHeaders = ['Matchup Name', 'Home', 'Away', 'Winner'];
-
-            renderTable(standingsBody, standingsHeader, filteredStandings, allData.standings.headers);
-            renderTable(draftBody, draftHeader, filteredDraft, allData.draft.headers);
             renderTable(transactionsBody, transactionsHeader, filteredTransactions, allData.transactions.headers);
-            renderTable(winnersBracketBody, winnersBracketHeader, winnersBracket, playoffHeaders);
-            renderTable(losersBracketBody, losersBracketHeader, losersBracket, playoffHeaders);
 
             loadingSpinner.classList.add('hidden');
             contentContainer.classList.remove('hidden');
@@ -400,74 +410,89 @@
                 standingsResponse,
                 draftResponse,
                 transactionsResponse,
-                playoffResponse
+                playoffResponse,
+                videoResponse
             ] = await Promise.all([
                 fetchAndParseCSV(dataUrls.standings),
                 fetchAndParseCSV(dataUrls.draft),
                 fetchAndParseCSV(dataUrls.transactions),
                 fetchAndParseCSV(dataUrls.playoff),
+                fetchAndParseCSV(dataUrls['sacko-videos']),
             ]);
 
             allData.standings = standingsResponse;
             allData.draft = draftResponse;
             allData.transactions = transactionsResponse;
             allData.playoff = playoffResponse;
+            allData['sacko-videos'] = videoResponse;
             
             loadingSpinner.classList.add('hidden');
             contentContainer.classList.remove('hidden');
-            loadData(seasonSelect.value);
+            loadData();
         }
-
-        seasonSelect.addEventListener('change', (e) => {
-            const selectedYear = e.target.value;
-            currentDraftRound = 'All';
-            currentDraftTeam = 'All';
-            currentPlayerSearch = '';
-            currentTransactionWeek = 'All';
-            currentTransactionType = 'All';
-            currentTransactionTeam = 'All';
-            currentTransactionPlayerSearch = '';
-            loadData(selectedYear);
-        });
-
-        draftRoundSelect.addEventListener('change', (e) => {
-            currentDraftRound = e.target.value;
-            loadData(seasonSelect.value);
-        });
-
-        draftTeamSelect.addEventListener('change', (e) => {
-            currentDraftTeam = e.target.value;
-            loadData(seasonSelect.value);
-        });
-
-        playerSearchInput.addEventListener('input', (e) => {
-            currentPlayerSearch = e.target.value;
-            loadData(seasonSelect.value);
-        });
-
-        transactionWeekSelect.addEventListener('change', (e) => {
-            currentTransactionWeek = e.target.value;
-            loadData(seasonSelect.value);
-        });
         
-        transactionTypeSelect.addEventListener('change', (e) => {
-            currentTransactionType = e.target.value;
-            loadData(seasonSelect.value);
-        });
-
-        transactionTeamSelect.addEventListener('change', (e) => {
-            currentTransactionTeam = e.target.value;
-            loadData(seasonSelect.value);
-        });
-
-        transactionPlayerSearchInput.addEventListener('input', (e) => {
-            currentTransactionPlayerSearch = e.target.value;
-            loadData(seasonSelect.value);
-        });
-
         document.addEventListener('DOMContentLoaded', () => {
             initializeData();
         });
+
+        if (draftYearSelect) {
+          draftYearSelect.addEventListener('change', (e) => {
+              currentDraftYear = e.target.value;
+              loadData();
+          });
+        }
+        if (draftRoundSelect) {
+          draftRoundSelect.addEventListener('change', (e) => {
+              currentDraftRound = e.target.value;
+              loadData();
+          });
+        }
+        if (draftTeamSelect) {
+          draftTeamSelect.addEventListener('change', (e) => {
+              currentDraftTeam = e.target.value;
+              loadData();
+          });
+        }
+        if (draftPlayerSearchInput) {
+          draftPlayerSearchInput.addEventListener('input', (e) => {
+              currentPlayerSearch = e.target.value;
+              loadData();
+          });
+        }
+
+        if (transactionYearSelect) {
+          transactionYearSelect.addEventListener('change', (e) => {
+              currentTransactionYear = e.target.value;
+              loadData();
+          });
+        }
+        if (transactionWeekSelect) {
+          transactionWeekSelect.addEventListener('change', (e) => {
+              currentTransactionWeek = e.target.value;
+              loadData();
+          });
+        }
+        
+        if (transactionTypeSelect) {
+          transactionTypeSelect.addEventListener('change', (e) => {
+              currentTransactionType = e.target.value;
+              loadData();
+          });
+        }
+
+        if (transactionTeamSelect) {
+          transactionTeamSelect.addEventListener('change', (e) => {
+              currentTransactionTeam = e.target.value;
+              loadData();
+          });
+        }
+        if (transactionPlayerSearchInput) {
+          transactionPlayerSearchInput.addEventListener('input', (e) => {
+              currentTransactionPlayerSearch = e.target.value;
+              loadData();
+          });
+        }
+        
     </script>
 </body>
 </html>
