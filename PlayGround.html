@@ -1,0 +1,558 @@
+<!-- Area where I can test new code and make changes to the website without publishing live -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sherwoodians | Fantasy League Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Richer, sleeker slate background */
+            color: #f8fafc;
+        }
+        /* Custom scrollbar for tables */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8 selection:bg-[#FC913A] selection:text-white">
+
+    <div class="max-w-7xl mx-auto space-y-12">
+
+        <header class="text-center mt-8 mb-8">
+            <h1 class="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#FF4E50] via-[#FC913A] to-[#F9D423] drop-shadow-sm tracking-tight">
+                Sherwoodians Legacy
+            </h1>
+            <p class="text-xl text-slate-400 mt-4 font-light tracking-wide uppercase">All-Time League History Dashboard</p>
+        </header>
+
+        <section class="max-w-2xl mx-auto bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl p-6 shadow-xl text-center">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-[#FC913A] mb-4">2026 Draft Countdown</h2>
+            <div id="countdown-timer" class="grid grid-cols-4 gap-3 sm:gap-4">
+                <div class="bg-slate-900/60 border border-slate-700/40 rounded-xl p-3">
+                    <span id="days" class="text-2xl sm:text-4xl font-black text-white block">00</span>
+                    <span class="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider">Days</span>
+                </div>
+                <div class="bg-slate-900/60 border border-slate-700/40 rounded-xl p-3">
+                    <span id="hours" class="text-2xl sm:text-4xl font-black text-white block">00</span>
+                    <span class="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider">Hours</span>
+                </div>
+                <div class="bg-slate-900/60 border border-slate-700/40 rounded-xl p-3">
+                    <span id="minutes" class="text-2xl sm:text-4xl font-black text-white block">00</span>
+                    <span class="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider">Mins</span>
+                </div>
+                <div class="bg-slate-900/60 border border-slate-700/40 rounded-xl p-3">
+                    <span id="seconds" class="text-2xl sm:text-4xl font-black text-[#F9D423] block">00</span>
+                    <span class="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider">Secs</span>
+                </div>
+            </div>
+            <p id="countdown-complete" class="hidden text-xl font-bold text-[#F9D423] py-2">The Draft is Live! Good luck!</p>
+        </section>
+
+        <nav class="flex flex-col items-center gap-4 mb-12">
+            <div class="flex justify-center flex-wrap gap-3">
+                <a href="#" class="px-6 py-2.5 rounded-full font-semibold text-sm bg-gradient-to-r from-slate-700 to-slate-800 text-white shadow-lg border border-slate-600 hover:border-[#FC913A] transition-all duration-300">
+                    Dashboard Home
+                </a>
+                <a href="#lm-note-section" class="px-6 py-2.5 rounded-full font-semibold text-sm bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition-all duration-300">
+                    LM Notes
+                </a>
+                <a href="#standings-section" class="px-6 py-2.5 rounded-full font-semibold text-sm bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition-all duration-300">
+                    Standings
+                </a>
+                <a href="#draft-section" class="px-6 py-2.5 rounded-full font-semibold text-sm bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition-all duration-300">
+                    Drafts & Transactions
+                </a>
+            </div>
+            
+            <div class="flex justify-center flex-wrap gap-2 mt-2 items-center">
+                <span class="px-3 py-1.5 text-sm font-semibold text-slate-500 uppercase tracking-wider">Archives:</span>
+                <a href="2025.html" class="px-4 py-1.5 rounded-lg font-medium text-sm bg-slate-800/50 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-[#FC913A] transition-colors duration-200">2025</a>
+                <a href="2024.html" class="px-4 py-1.5 rounded-lg font-medium text-sm bg-slate-800/50 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-[#FC913A] transition-colors duration-200">2024</a>
+                <a href="2023.html" class="px-4 py-1.5 rounded-lg font-medium text-sm bg-slate-800/50 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-[#FC913A] transition-colors duration-200">2023</a>
+                <a href="2022.html" class="px-4 py-1.5 rounded-lg font-medium text-sm bg-slate-800/50 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-[#FC913A] transition-colors duration-200">2022</a>
+                <a href="2021.html" class="px-4 py-1.5 rounded-lg font-medium text-sm bg-slate-800/50 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-[#FC913A] transition-colors duration-200">2021</a>
+            </div>
+        </nav>
+
+        <div id="content-container" class="space-y-8">
+            
+            <section id="season-honors" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 text-center shadow-xl hover:border-[#FFD166]/50 transition-colors duration-300">
+                    <h3 class="text-sm font-semibold uppercase tracking-widest mb-2 text-[#FFD166]">Reigning Champion</h3>
+                    <p id="champion-name" class="text-4xl font-black text-white drop-shadow-md">Loading...</p>
+                </div>
+                <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 text-center shadow-xl hover:border-[#F9D423]/50 transition-colors duration-300">
+                    <h3 class="text-sm font-semibold uppercase tracking-widest mb-2 text-[#F9D423]">Reigning Sacko</h3>
+                    <p id="sacko-name" class="text-4xl font-black text-white drop-shadow-md">Loading...</p>
+                </div>
+            </section>
+            
+            <section id="lm-note-section" class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl shadow-xl overflow-hidden relative">
+                <div class="h-1 w-full bg-gradient-to-r from-[#FF4E50] to-[#F9D423]"></div>
+                <div class="p-8">
+                    <h2 class="text-2xl font-bold mb-6 text-white flex items-center gap-3">
+                        <svg class="w-6 h-6 text-[#F9D423]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                        League Memo
+                    </h2>
+                    
+                    <div class="bg-slate-900/50 rounded-xl p-6 border border-slate-700/30">
+                        <h3 class="text-xl font-bold mb-4 text-[#FC913A]">And So it Begins</h3>
+                        
+                        <p class="text-slate-300 leading-relaxed whitespace-pre-wrap">
+Sherwoodians Fantasy Football Draft. September 3rd, 2026. 8PM
+Good luck this season.
+
+<!-- Type your updates here just like a normal document. Hit enter to drop down a line! -->
+
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="standings-section" class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl shadow-xl p-8">
+                <h2 class="text-2xl font-bold mb-6 text-white">All-Time Standings</h2>
+                <div class="overflow-x-auto ring-1 ring-slate-700 rounded-xl">
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="bg-slate-900/80 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-700">
+                            <tr id="standings-header"></tr>
+                        </thead>
+                        <tbody id="standings-body" class="divide-y divide-slate-700/50 text-slate-200">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+    
+            <section id="draft-section" class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl shadow-xl p-8">
+                <h2 class="text-2xl font-bold mb-6 text-white">Draft Results</h2>
+                
+                <div class="mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-slate-900/50 p-4 rounded-xl border border-slate-700/30">
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Year</label>
+                        <select id="draft-year-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] focus:border-transparent outline-none text-slate-200 text-sm transition-all"></select>
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Round</label>
+                        <select id="draft-round-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] focus:border-transparent outline-none text-slate-200 text-sm transition-all"></select>
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Team</label>
+                        <select id="draft-team-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] focus:border-transparent outline-none text-slate-200 text-sm transition-all"></select>
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Player Search</label>
+                        <input type="text" id="draft-player-search" placeholder="Search name..." class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] focus:border-transparent outline-none text-slate-200 text-sm placeholder-slate-500 transition-all">
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto ring-1 ring-slate-700 rounded-xl max-h-[500px] overflow-y-auto">
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="bg-slate-900/80 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-700 sticky top-0 z-10">
+                            <tr id="draft-header"></tr>
+                        </thead>
+                        <tbody id="draft-body" class="divide-y divide-slate-700/50 text-slate-200">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="transactions-section" class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl shadow-xl p-8">
+                <h2 class="text-2xl font-bold mb-6 text-white">Transactions Hub</h2>
+                
+                <div class="mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 bg-slate-900/50 p-4 rounded-xl border border-slate-700/30">
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Year</label>
+                        <select id="transaction-year-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] outline-none text-slate-200 text-sm transition-all"></select>
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Week</label>
+                        <select id="transaction-week-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] outline-none text-slate-200 text-sm transition-all"></select>
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Type</label>
+                        <select id="transaction-type-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] outline-none text-slate-200 text-sm transition-all"></select>
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Team</label>
+                        <select id="transaction-team-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] outline-none text-slate-200 text-sm transition-all"></select>
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Player</label>
+                        <input type="text" id="transaction-player-search" placeholder="Search..." class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] outline-none text-slate-200 text-sm placeholder-slate-500 transition-all">
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto ring-1 ring-slate-700 rounded-xl max-h-[500px] overflow-y-auto">
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="bg-slate-900/80 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-700 sticky top-0 z-10">
+                            <tr id="transactions-header"></tr>
+                        </thead>
+                        <tbody id="transactions-body" class="divide-y divide-slate-700/50 text-slate-200">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+
+        <div id="loading-spinner" class="text-center mt-20 hidden">
+            <svg class="animate-spin h-12 w-12 text-[#FC913A] mx-auto drop-shadow-lg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <p class="mt-4 text-slate-400 font-medium tracking-wide animate-pulse">Pulling league data...</p>
+        </div>
+    </div>
+
+    <script>
+        // DRAFT COUNTDOWN SCRIPT
+        const draftTargetDate = new Date("September 3, 2026 20:00:00 EDT").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = draftTargetDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerText = String(days).padStart(2, '0');
+                document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+                document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+                document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+            } else {
+                document.getElementById("countdown-timer").classList.add("hidden");
+                document.getElementById("countdown-complete").classList.remove("hidden");
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        const dataUrls = {
+            'standings': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTXmw29UZh_a-p13chTl3EUiUx1ll9NGD014qj7tVC0snPjuHcvLL_SqUIisuCE9ysRPwigIrepqnJ-/pub?gid=0&single=true&output=csv',
+            'draft': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQxG8wUhQIo6uXePQPQfmvZS-h0eOhWOWGV3TSerYYVVrWlaW59cdLe9rB_OqIalxkzuiDfNAa_5Gmu/pub?gid=763323686&single=true&output=csv',
+            'transactions': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRu0Gxeepf1R4Upz0NjdfIKlziTDimChyiK3nW7KiSFKj-iqux5b3gk_I88TGJppYvHoW5XwhJuPND7/pub?gid=0&single=true&output=csv',
+            'playoff': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSAf3ZlRSnJcgtKB1tQa_YaJqnkOVNQYRiEUiI92domLwNVqdIYNenzDWEouPYiNu98RJ7pVz9s9ggQ/pub?gid=0&single=true&output=csv',
+            'sacko-videos': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4zmNBKc5W7O2Cz13fsPqUXFV7E0v4MXHOSQx3FUt9MCMhN5_CRk8db5V4kh6nh_YIQDyd55lpnGN-/pub?gid=0&single=true&output=csv'
+        };
+
+        const draftYearSelect = document.getElementById('draft-year-select');
+        const draftRoundSelect = document.getElementById('draft-round-select');
+        const draftTeamSelect = document.getElementById('draft-team-select');
+        const draftPlayerSearchInput = document.getElementById('draft-player-search');
+        const transactionYearSelect = document.getElementById('transaction-year-select');
+        const transactionWeekSelect = document.getElementById('transaction-week-select');
+        const transactionTypeSelect = document.getElementById('transaction-type-select');
+        const transactionTeamSelect = document.getElementById('transaction-team-select');
+        const transactionPlayerSearchInput = document.getElementById('transaction-player-search');
+        const standingsBody = document.getElementById('standings-body');
+        const standingsHeader = document.getElementById('standings-header');
+        const draftBody = document.getElementById('draft-body');
+        const draftHeader = document.getElementById('draft-header');
+        const transactionsBody = document.getElementById('transactions-body');
+        const transactionsHeader = document.getElementById('transactions-header');
+        const championNameEl = document.getElementById('champion-name');
+        const sackoNameEl = document.getElementById('sacko-name');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const contentContainer = document.getElementById('content-container');
+
+        let allData = {};
+        let currentDraftYear = 'All';
+        let currentDraftRound = 'All';
+        let currentDraftTeam = 'All';
+        let currentPlayerSearch = '';
+        let currentTransactionYear = 'All';
+        let currentTransactionWeek = 'All';
+        let currentTransactionType = 'All';
+        let currentTransactionTeam = 'All';
+        let currentTransactionPlayerSearch = '';
+
+        async function fetchAndParseCSV(url) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const text = await response.text();
+                const rows = text.split('\n').map(row => row.split(','));
+                const headers = rows[0].map(h => h.trim());
+                const data = rows.slice(1).filter(row => row.length === headers.length && row.join('').trim() !== '').map(row => {
+                    const obj = {};
+                    headers.forEach((header, i) => {
+                        obj[header] = row[i]?.trim();
+                    });
+                    return obj;
+                });
+                return { headers, data };
+            } catch (error) {
+                console.error('Error fetching or parsing CSV:', error);
+                return { headers: [], data: [] };
+            }
+        }
+        
+        function renderTable(tableBody, tableHeader, data, headers) {
+            tableHeader.innerHTML = '';
+            tableBody.innerHTML = '';
+
+            if (headers.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="100%" class="p-6 text-center text-slate-500 italic">No data available.</td></tr>';
+                return;
+            }
+            
+            const headerHtml = headers.map(header => `<th class="px-6 py-4 font-semibold">${header}</th>`).join('');
+            tableHeader.innerHTML = headerHtml;
+
+            const bodyHtml = data.map(row => {
+                const cells = headers.map(header => {
+                    let cellValue = row[header];
+                    if (header === 'Points For' || header === 'Points Against') {
+                        const numericValue = parseFloat(cellValue);
+                        if (!isNaN(numericValue)) {
+                            cellValue = numericValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                        }
+                    }
+                    return `<td class="px-6 py-4 hover:bg-slate-800/30 transition-colors">${cellValue}</td>`;
+                }).join('');
+                return `<tr>${cells}</tr>`;
+            }).join('');
+            tableBody.innerHTML = bodyHtml;
+        }
+
+        async function loadData() {
+            loadingSpinner.classList.remove('hidden');
+            contentContainer.classList.add('hidden');
+
+            const latestYear = allData.playoff.data.map(row => parseInt(row.Year)).sort((a,b) => b-a)[0].toString();
+            const championMatchup = allData.playoff.data.find(matchup => matchup.Year === latestYear && matchup['Matchup Name'] === 'Championship');
+            const sackoMatchup = allData.playoff.data.find(matchup => matchup.Year === latestYear && matchup['Matchup Name'] === 'Sacko');
+            
+            championNameEl.textContent = championMatchup ? championMatchup.Winner : 'N/A';
+            sackoNameEl.textContent = sackoMatchup ? sackoMatchup.Loser : 'N/A';
+            
+            const allTimeStandings = {};
+            allData.standings.data.forEach(row => {
+                if (!allTimeStandings[row['Team Name']]) {
+                    allTimeStandings[row['Team Name']] = { 'Team Name': row['Team Name'], 'Wins': 0, 'Losses': 0, 'Points For': 0, 'Points Against': 0 };
+                }
+                allTimeStandings[row['Team Name']]['Wins'] += parseInt(row.Wins);
+                allTimeStandings[row['Team Name']]['Losses'] += parseInt(row.Losses);
+                allTimeStandings[row['Team Name']]['Points For'] += parseFloat(row['Points For']);
+                allTimeStandings[row['Team Name']]['Points Against'] += parseFloat(row['Points Against']);
+            });
+
+            const allTimeStandingsData = Object.values(allTimeStandings).map(team => {
+                const totalGames = team['Wins'] + team['Losses'];
+                const winningPercentage = totalGames > 0 ? (team['Wins'] / totalGames).toFixed(3).substring(1) : '.000';
+                return {
+                    'Team Name': team['Team Name'],
+                    'Wins': team['Wins'],
+                    'Losses': team['Losses'],
+                    'Winning %': winningPercentage,
+                    'Points For': team['Points For'].toFixed(2),
+                    'Points Against': team['Points Against'].toFixed(2)
+                };
+            });
+            const allTimeStandingsHeaders = ['Team Name', 'Wins', 'Losses', 'Winning %', 'Points For', 'Points Against'];
+            allTimeStandingsData.sort((a, b) => parseFloat(b['Winning %']) - parseFloat(a['Winning %']));
+            renderTable(standingsBody, standingsHeader, allTimeStandingsData, allTimeStandingsHeaders);
+            
+            const draftYears = Array.from(new Set(allData.draft.data.map(row => row.Year))).sort((a, b) => b - a);
+            if (draftYearSelect) {
+                draftYearSelect.innerHTML = '<option value="All">All Years</option>' + draftYears.map(year => `<option value="${year}">${year}</option>`).join('');
+                draftYearSelect.value = currentDraftYear;
+            }
+
+            const draftRounds = Array.from(new Set(allData.draft.data.filter(row => row.Year === currentDraftYear || currentDraftYear === 'All').map(row => row.Round))).sort((a, b) => a - b);
+            if (draftRoundSelect) {
+                draftRoundSelect.innerHTML = '<option value="All">All Rounds</option>' + draftRounds.map(round => `<option value="${round}">Round ${round}</option>`).join('');
+                draftRoundSelect.value = currentDraftRound;
+            }
+
+            const draftTeams = Array.from(new Set(allData.draft.data.filter(row => row.Year === currentDraftYear || currentDraftYear === 'All').map(row => row['Team Name']))).sort();
+            if (draftTeamSelect) {
+                draftTeamSelect.innerHTML = '<option value="All">All Teams</option>' + draftTeams.map(team => `<option value="${team}">${team}</option>`).join('');
+                draftTeamSelect.value = currentDraftTeam;
+            }
+            
+            let filteredDraft = allData.draft.data;
+            if (currentDraftYear !== 'All') {
+                filteredDraft = filteredDraft.filter(row => row.Year === currentDraftYear);
+            }
+            if (currentDraftRound !== 'All') {
+                filteredDraft = filteredDraft.filter(row => row.Round === currentDraftRound);
+            }
+            if (currentDraftTeam !== 'All') {
+                filteredDraft = filteredDraft.filter(row => row['Team Name'] === currentDraftTeam);
+            }
+            if (currentPlayerSearch) {
+                const searchTerm = currentPlayerSearch.toLowerCase();
+                filteredDraft = filteredDraft.filter(row => row['Player Name'].toLowerCase().includes(searchTerm));
+            }
+            renderTable(draftBody, draftHeader, filteredDraft, allData.draft.headers);
+            
+            const transactionYears = Array.from(new Set(allData.transactions.data.map(row => row.Year))).sort((a,b) => b - a);
+            if (transactionYearSelect) {
+                transactionYearSelect.innerHTML = '<option value="All">All Years</option>' + transactionYears.map(year => `<option value="${year}">${year}</option>`).join('');
+                transactionYearSelect.value = currentTransactionYear;
+            }
+
+            const transactionWeeks = Array.from(new Set(allData.transactions.data.filter(row => row.Year === currentTransactionYear || currentTransactionYear === 'All').map(row => row.Week))).sort((a,b) => a - b);
+            if (transactionWeekSelect) {
+                transactionWeekSelect.innerHTML = '<option value="All">All Weeks</option>' + transactionWeeks.map(week => `<option value="${week}">Week ${week}</option>`).join('');
+                transactionWeekSelect.value = currentTransactionWeek;
+            }
+
+            const transactionTypes = Array.from(new Set(allData.transactions.data.filter(row => row.Year === currentTransactionYear || currentTransactionYear === 'All').map(row => row.Type))).sort();
+            if (transactionTypeSelect) {
+                transactionTypeSelect.innerHTML = '<option value="All">All Types</option>' + transactionTypes.map(type => `<option value="${type}">${type}</option>`).join('');
+                transactionTypeSelect.value = currentTransactionType;
+            }
+            
+            const transactionTeams = Array.from(new Set(allData.transactions.data.filter(row => row.Year === currentTransactionYear || currentTransactionYear === 'All').flatMap(row => row['Teams Involved'].split(',').map(team => team.trim())))).sort();
+            if (transactionTeamSelect) {
+                transactionTeamSelect.innerHTML = '<option value="All">All Teams</option>' + transactionTeams.map(team => `<option value="${team}">${team}</option>`).join('');
+                transactionTeamSelect.value = currentTransactionTeam;
+            }
+            
+            let filteredTransactions = allData.transactions.data;
+            if (currentTransactionYear !== 'All') {
+                filteredTransactions = filteredTransactions.filter(row => row.Year === currentTransactionYear);
+            }
+            if (currentTransactionWeek !== 'All') {
+                filteredTransactions = filteredTransactions.filter(row => row.Week === currentTransactionWeek);
+            }
+            if (currentTransactionType !== 'All') {
+                filteredTransactions = filteredTransactions.filter(row => row.Type === currentTransactionType);
+            }
+            if (currentTransactionTeam !== 'All') {
+                filteredTransactions = filteredTransactions.filter(row => row['Teams Involved'].includes(currentTransactionTeam));
+            }
+            if (currentTransactionPlayerSearch) {
+                const searchTerm = currentTransactionPlayerSearch.toLowerCase();
+                filteredTransactions = filteredTransactions.filter(row => row['Players Added'].toLowerCase().includes(searchTerm) || row['Players Dropped'].toLowerCase().includes(searchTerm));
+            }
+            filteredTransactions.sort((a, b) => {
+                const idA = a['Transaction ID'] ? parseInt(a['Transaction ID']) : 0;
+                const idB = b['Transaction ID'] ? parseInt(b['Transaction ID']) : 0;
+                return idA - idB;
+            });
+            filteredTransactions = filteredTransactions.filter(row => row.Status !== 'failed');
+            renderTable(transactionsBody, transactionsHeader, filteredTransactions, allData.transactions.headers);
+
+            loadingSpinner.classList.add('hidden');
+            contentContainer.classList.remove('hidden');
+        }
+
+        async function initializeData() {
+            loadingSpinner.classList.remove('hidden');
+            contentContainer.classList.add('hidden');
+
+            const [
+                standingsResponse,
+                draftResponse,
+                transactionsResponse,
+                playoffResponse,
+                videoResponse
+            ] = await Promise.all([
+                fetchAndParseCSV(dataUrls.standings),
+                fetchAndParseCSV(dataUrls.draft),
+                fetchAndParseCSV(dataUrls.transactions),
+                fetchAndParseCSV(dataUrls.playoff),
+                fetchAndParseCSV(dataUrls['sacko-videos']),
+            ]);
+
+            allData.standings = standingsResponse;
+            allData.draft = draftResponse;
+            allData.transactions = transactionsResponse;
+            allData.playoff = playoffResponse;
+            allData['sacko-videos'] = videoResponse;
+            
+            loadingSpinner.classList.add('hidden');
+            contentContainer.classList.remove('hidden');
+            loadData();
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeData();
+        });
+
+        if (draftYearSelect) {
+          draftYearSelect.addEventListener('change', (e) => {
+              currentDraftYear = e.target.value;
+              loadData();
+          });
+        }
+        if (draftRoundSelect) {
+          draftRoundSelect.addEventListener('change', (e) => {
+              currentDraftRound = e.target.value;
+              loadData();
+          });
+        }
+        if (draftTeamSelect) {
+          draftTeamSelect.addEventListener('change', (e) => {
+              currentDraftTeam = e.target.value;
+              loadData();
+          });
+        }
+        if (draftPlayerSearchInput) {
+          draftPlayerSearchInput.addEventListener('input', (e) => {
+              currentPlayerSearch = e.target.value;
+              loadData();
+          });
+        }
+
+        if (transactionYearSelect) {
+          transactionYearSelect.addEventListener('change', (e) => {
+              currentTransactionYear = e.target.value;
+              loadData();
+          });
+        }
+        if (transactionWeekSelect) {
+          transactionWeekSelect.addEventListener('change', (e) => {
+              currentTransactionWeek = e.target.value;
+              loadData();
+          });
+        }
+        
+        if (transactionTypeSelect) {
+          transactionTypeSelect.addEventListener('change', (e) => {
+              currentTransactionType = e.target.value;
+              loadData();
+          });
+        }
+
+        if (transactionTeamSelect) {
+          transactionTeamSelect.addEventListener('change', (e) => {
+              currentTransactionTeam = e.target.value;
+              loadData();
+          });
+        }
+        if (transactionPlayerSearchInput) {
+          transactionPlayerSearchInput.addEventListener('input', (e) => {
+              currentTransactionPlayerSearch = e.target.value;
+              loadData();
+          });
+        }
+        
+    </script>
+</body>
+</html>
