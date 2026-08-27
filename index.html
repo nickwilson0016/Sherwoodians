@@ -1,209 +1,164 @@
 <!-- Original file. Not currently in use. Here in case of emergency. Home page of website is linked to Index2.html -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sherwoodians | Fantasy League Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a; /* Richer, sleeker slate background */
-            color: #f8fafc;
-        }
-        /* Custom scrollbar for tables */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1e293b;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #475569;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #64748b;
-        }
-    </style>
-</head>
-<body class="p-4 sm:p-8 selection:bg-[#FC913A] selection:text-white">
 
-    <div class="max-w-7xl mx-auto space-y-12">
-
-        <header class="text-center mt-8 mb-8">
-            <h1 class="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#FF4E50] via-[#FC913A] to-[#F9D423] drop-shadow-sm tracking-tight">
-                Sherwoodians Legacy
-            </h1>
-            <p class="text-xl text-slate-400 mt-4 font-light tracking-wide uppercase">All-Time League History Dashboard</p>
-        </header>
-
-        <section class="max-w-2xl mx-auto bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl p-6 shadow-xl text-center">
-            <h2 class="text-xs font-bold uppercase tracking-widest text-[#FC913A] mb-4">2026 Draft Countdown</h2>
-            <div id="countdown-timer" class="grid grid-cols-4 gap-3 sm:gap-4">
-                <div class="bg-slate-900/60 border border-slate-700/40 rounded-xl p-3">
-                    <span id="days" class="text-2xl sm:text-4xl font-black text-white block">00</span>
-                    <span class="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider">Days</span>
-                </div>
-                <div class="bg-slate-900/60 border border-slate-700/40 rounded-xl p-3">
-                    <span id="hours" class="text-2xl sm:text-4xl font-black text-white block">00</span>
-                    <span class="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider">Hours</span>
-                </div>
-                <div class="bg-slate-900/60 border border-slate-700/40 rounded-xl p-3">
-                    <span id="minutes" class="text-2xl sm:text-4xl font-black text-white block">00</span>
-                    <span class="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider">Mins</span>
-                </div>
-                <div class="bg-slate-900/60 border border-slate-700/40 rounded-xl p-3">
-                    <span id="seconds" class="text-2xl sm:text-4xl font-black text-[#F9D423] block">00</span>
-                    <span class="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider">Secs</span>
-                </div>
-            </div>
-            <p id="countdown-complete" class="hidden text-xl font-bold text-[#F9D423] py-2">The Draft is Live! Good luck!</p>
-        </section>
-
-        <nav class="flex flex-col items-center gap-4 mb-12">
-            <div class="flex justify-center flex-wrap gap-3">
-                <a href="#" class="px-6 py-2.5 rounded-full font-semibold text-sm bg-gradient-to-r from-slate-700 to-slate-800 text-white shadow-lg border border-slate-600 hover:border-[#FC913A] transition-all duration-300">
-                    Dashboard Home
-                </a>
-                <a href="#lm-note-section" class="px-6 py-2.5 rounded-full font-semibold text-sm bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition-all duration-300">
-                    LM Notes
-                </a>
-                <a href="#standings-section" class="px-6 py-2.5 rounded-full font-semibold text-sm bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition-all duration-300">
-                    Standings
-                </a>
-                <a href="#draft-section" class="px-6 py-2.5 rounded-full font-semibold text-sm bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition-all duration-300">
-                    Drafts & Transactions
-                </a>
-            </div>
-            
-            <div class="flex justify-center flex-wrap gap-2 mt-2 items-center">
-                <span class="px-3 py-1.5 text-sm font-semibold text-slate-500 uppercase tracking-wider">Archives:</span>
-                <a href="2025.html" class="px-4 py-1.5 rounded-lg font-medium text-sm bg-slate-800/50 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-[#FC913A] transition-colors duration-200">2025</a>
-                <a href="2024.html" class="px-4 py-1.5 rounded-lg font-medium text-sm bg-slate-800/50 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-[#FC913A] transition-colors duration-200">2024</a>
-                <a href="2023.html" class="px-4 py-1.5 rounded-lg font-medium text-sm bg-slate-800/50 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-[#FC913A] transition-colors duration-200">2023</a>
-                <a href="2022.html" class="px-4 py-1.5 rounded-lg font-medium text-sm bg-slate-800/50 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-[#FC913A] transition-colors duration-200">2022</a>
-                <a href="2021.html" class="px-4 py-1.5 rounded-lg font-medium text-sm bg-slate-800/50 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-[#FC913A] transition-colors duration-200">2021</a>
-            </div>
-        </nav>
-
-        <div id="content-container" class="space-y-8">
-            
-            <section id="season-honors" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 text-center shadow-xl hover:border-[#FFD166]/50 transition-colors duration-300">
-                    <h3 class="text-sm font-semibold uppercase tracking-widest mb-2 text-[#FFD166]">Reigning Champion</h3>
-                    <p id="champion-name" class="text-4xl font-black text-white drop-shadow-md">Loading...</p>
-                </div>
-                <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 text-center shadow-xl hover:border-[#F9D423]/50 transition-colors duration-300">
-                    <h3 class="text-sm font-semibold uppercase tracking-widest mb-2 text-[#F9D423]">Reigning Sacko</h3>
-                    <p id="sacko-name" class="text-4xl font-black text-white drop-shadow-md">Loading...</p>
-                </div>
             </section>
             
-            <section id="lm-note-section" class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl shadow-xl overflow-hidden relative">
-                <div class="h-1 w-full bg-gradient-to-r from-[#FF4E50] to-[#F9D423]"></div>
-                <div class="p-8">
-                    <h2 class="text-2xl font-bold mb-6 text-white flex items-center gap-3">
-                        <svg class="w-6 h-6 text-[#F9D423]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-                        League Memo
-                    </h2>
-                    
-                    <div class="bg-slate-900/50 rounded-xl p-6 border border-slate-700/30">
-                        <h3 class="text-xl font-bold mb-4 text-[#FC913A]">And So it Begins</h3>
+            <!-- LM Note Section -->
+            <section id="lm-note-section" class="bg-gray-800 rounded-lg shadow-2xl p-6 mb-8">
+                <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">LM Note</h2>
+                <div class="bg-gray-700 rounded-lg p-4">
+                    <h3 class="text-xl font-bold mb-2 text-white text-center">And So it Begins</h3>
+                    <p class="text-gray-300 mb-4">
+                        <br>
+                        Sherwoodians Fantasy Football Draft. September 3rd, 2026. 8PM
+                        <br>
+                        <br>
+                        <br>
                         
-                        <p class="text-slate-300 leading-relaxed whitespace-pre-wrap">Sherwoodians Fantasy Football Draft. September 3rd, 2026. 8PM
+                        
+                    </p>
+                    <!-- <h4 class="text-xl font-bold mb-2 text-white text-center">Welcome one and all to the first annual Sherwoodian Awards</h4>
+                    <p class="text-gray-300" mb-4>
+                        Start writing here
+                        
 
-<!-- Type your updates here just like a normal document. Hit enter to drop down a line!
+                        
+                    </p> -->
 
-Good luck this season. -->
-                        </p>
-                    </div>
+                    
+                    
+                    <!-- <ul class="list-disc list-inside text-gray-300 mb-4">
+                        <li>Placeholder for Leg 1</li>
+                        <li>Placeholder for Leg 2</li>
+                        <li>Placeholder for Leg 3</li>
+                    </ul> -->
+
+                    
+                 <!--   <h4 class="text-xl font-bold mb-2 text-white text-center">Fantasy News - Time for New Names</h4>
+                    <p class="text-gray-300" mb-4>
+                        Shoutout Brendan for inspiring this section. He is the only one to change his team name this season. We need a refresh and I'm dropping the gauntlet. By this time next week everyone needs to have an updated team name. If you can figure it out, also upload a new photo for your team logo. Get creative. Come up with something new. Use AI to create a logo of Malik Nabers in a StateFarm polo, CeeDee's head on a lamb, Bill Croskey-Merritt dressed as Bill Nye (BILL BILL BILL BILL BILL - BILL NYE THE SCIENCE GUY). I will have a new name and logo before Thursday's game kicks off and all of you better too.
+                        
+                        <br>
+                        <br>
+                        NOTE: The only person exempt from this mandate (HA gayyyyyyyyyy) is league champion who has earned the right to continue using his reigning league champion name if he so chooses.
+
+
+                        
+                    </p> -->
+                    
                 </div>
             </section>
 
-            <section id="standings-section" class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl shadow-xl p-8">
-                <h2 class="text-2xl font-bold mb-6 text-white">All-Time Standings</h2>
-                <div class="overflow-x-auto ring-1 ring-slate-700 rounded-xl">
-                    <table class="min-w-full text-left text-sm whitespace-nowrap">
-                        <thead class="bg-slate-900/80 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-700">
+<!-- Season Hype Video Update with New Video Link -->
+           <!-- <section id="hype-video-section" class="bg-gray-800 rounded-lg shadow-2xl p-6 mb-8"> -->
+                <!-- <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">2025 Season Hype Video</h2> -->
+                <!-- <div class="video-container relative pb-[56.25%] h-0 overflow-hidden max-w-full"> -->
+                    <!-- This is the link to update. Get this embedded link from Google Drive. Only need to update the src= portion with the link from Google Drive -->
+                    <!-- <iframe id="hype-video-frame" class="absolute top-0 left-0 w-full h-full" src="https://drive.google.com/file/d/1TKbEZhFPpd4XSDxbgr1kKxfG5YBrYn_4/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                <!-- </div>
+            </section> -->
+
+<!-- Sam's Breaking News Video - Drake Maye Guy Now -->
+           <!-- <section id="week-six-breaking-news" class="bg-gray-800 rounded-lg shadow-2xl p-6 mb-8">
+                <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">Breaking News - Week 7</h2>
+                <div class="video-container relative pb-[56.25%] h-0 overflow-hidden max-w-full"> -->
+                    <!-- This is the link to update. Get this embedded link from Google Drive. Only need to update the src= portion with the link from Google Drive -->
+                    <!-- <iframe id="hype-video-frame" class="absolute top-0 left-0 w-full h-full" src="https://drive.google.com/file/d/1HlExrJaak8JQRxEDE7WVrow2J68BFd6c/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </section> -->
+
+<!-- All Time Standings Section -->
+            <section id="standings-section" class="bg-gray-800 rounded-lg shadow-2xl p-6 mb-8">
+                <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">All-Time Standings</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full text-left">
+                        <thead class="bg-gray-700 text-gray-300">
                             <tr id="standings-header"></tr>
                         </thead>
-                        <tbody id="standings-body" class="divide-y divide-slate-700/50 text-slate-200">
+                        <tbody id="standings-body">
                         </tbody>
                     </table>
                 </div>
             </section>
     
-            <section id="draft-section" class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl shadow-xl p-8">
-                <h2 class="text-2xl font-bold mb-6 text-white">Draft Results</h2>
-                
-                <div class="mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-slate-900/50 p-4 rounded-xl border border-slate-700/30">
-                    <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Year</label>
-                        <select id="draft-year-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] focus:border-transparent outline-none text-slate-200 text-sm transition-all"></select>
+<!-- All Time Draft Results Section -->
+            <section id="draft-section" class="bg-gray-800 rounded-lg shadow-2xl p-6 mb-8">
+                <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">Draft Results</h2>
+                <div class="mb-4 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <div class="flex items-center">
+                        <label for="draft-year-select" class="font-bold mr-2 text-gray-300">Filter by Year:</label>
+                        <select id="draft-year-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
+                            <option value="All">All Years</option>
+                        </select>
                     </div>
-                    <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Round</label>
-                        <select id="draft-round-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] focus:border-transparent outline-none text-slate-200 text-sm transition-all"></select>
+                    <div class="flex items-center">
+                        <label for="draft-round-select" class="font-bold mr-2 text-gray-300">Filter by Round:</label>
+                        <select id="draft-round-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
+                            <option value="All">All Rounds</option>
+                        </select>
                     </div>
-                    <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Team</label>
-                        <select id="draft-team-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] focus:border-transparent outline-none text-slate-200 text-sm transition-all"></select>
+                    <div class="flex items-center">
+                        <label for="draft-team-select" class="font-bold mr-2 text-gray-300">Filter by Team:</label>
+                        <select id="draft-team-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
+                            <option value="All">All Teams</option>
+                        </select>
                     </div>
-                    <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Player Search</label>
-                        <input type="text" id="draft-player-search" placeholder="Search name..." class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] focus:border-transparent outline-none text-slate-200 text-sm placeholder-slate-500 transition-all">
+                    <div class="flex-1">
+                        <label for="draft-player-search" class="sr-only">Search for Player</label>
+                        <input type="text" id="draft-player-search" placeholder="Search Player Name" class="w-full p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200 placeholder-gray-400">
                     </div>
                 </div>
-
-                <div class="overflow-x-auto ring-1 ring-slate-700 rounded-xl max-h-[500px] overflow-y-auto">
-                    <table class="min-w-full text-left text-sm whitespace-nowrap">
-                        <thead class="bg-slate-900/80 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-700 sticky top-0 z-10">
+                <div class="overflow-x-auto max-h-96 overflow-y-auto">
+                    <table class="min-w-full text-left">
+                        <thead class="bg-gray-700 text-gray-300">
                             <tr id="draft-header"></tr>
                         </thead>
-                        <tbody id="draft-body" class="divide-y divide-slate-700/50 text-slate-200">
+                        <tbody id="draft-body">
                         </tbody>
                     </table>
                 </div>
             </section>
 
-            <section id="transactions-section" class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl shadow-xl p-8">
-                <h2 class="text-2xl font-bold mb-6 text-white">Transactions Hub</h2>
-                
-                <div class="mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 bg-slate-900/50 p-4 rounded-xl border border-slate-700/30">
-                    <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Year</label>
-                        <select id="transaction-year-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] outline-none text-slate-200 text-sm transition-all"></select>
+<!-- All Time Transactions Section -->
+            <section id="transactions-section" class="bg-gray-800 rounded-lg shadow-2xl p-6">
+                <h2 class="text-3xl font-bold mb-4 text-[#F9D423]">Transactions</h2>
+                <div class="mb-4 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <div class="flex items-center">
+                        <label for="transaction-year-select" class="font-bold mr-2 text-gray-300">Filter by Year:</label>
+                        <select id="transaction-year-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
+                            <option value="All">All Years</option>
+                        </select>
                     </div>
-                    <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Week</label>
-                        <select id="transaction-week-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] outline-none text-slate-200 text-sm transition-all"></select>
+                    <div class="flex items-center">
+                        <label for="transaction-week-select" class="font-bold mr-2 text-gray-300">Filter by Week:</label>
+                        <select id="transaction-week-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
+                            <option value="All">All Weeks</option>
+                        </select>
                     </div>
-                    <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Type</label>
-                        <select id="transaction-type-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] outline-none text-slate-200 text-sm transition-all"></select>
+                    <div class="flex items-center">
+                        <label for="transaction-type-select" class="font-bold mr-2 text-gray-300">Type:</label>
+                        <select id="transaction-type-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
+                            <option value="All">All Types</option>
+                        </select>
                     </div>
-                    <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Team</label>
-                        <select id="transaction-team-select" class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] outline-none text-slate-200 text-sm transition-all"></select>
+                    
+                    <div class="flex items-center">
+                        <label for="transaction-team-select" class="font-bold mr-2 text-gray-300">Filter by Team:</label>
+                        <select id="transaction-team-select" class="p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200">
+                            <option value="All">All Teams</option>
+                        </select>
                     </div>
-                    <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-slate-400 uppercase mb-1">Player</label>
-                        <input type="text" id="transaction-player-search" placeholder="Search..." class="p-2.5 bg-slate-800 border border-slate-600 rounded-lg focus:ring-2 focus:ring-[#FC913A] outline-none text-slate-200 text-sm placeholder-slate-500 transition-all">
+                    <div class="flex-1">
+                        <label for="transaction-player-search" class="sr-only">Search Player</label>
+                        <input type="text" id="transaction-player-search" placeholder="Search Player Name" class="w-full p-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-gray-200 placeholder-gray-400">
                     </div>
                 </div>
-
-                <div class="overflow-x-auto ring-1 ring-slate-700 rounded-xl max-h-[500px] overflow-y-auto">
-                    <table class="min-w-full text-left text-sm whitespace-nowrap">
-                        <thead class="bg-slate-900/80 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-700 sticky top-0 z-10">
+                <div class="overflow-x-auto max-h-96 overflow-y-auto">
+                    <table class="min-w-full text-left">
+                        <thead class="bg-gray-700 text-gray-300">
                             <tr id="transactions-header"></tr>
                         </thead>
-                        <tbody id="transactions-body" class="divide-y divide-slate-700/50 text-slate-200">
+                        <tbody id="transactions-body">
                         </tbody>
                     </table>
                 </div>
@@ -211,41 +166,16 @@ Good luck this season. -->
 
         </div>
 
-        <div id="loading-spinner" class="text-center mt-20 hidden">
-            <svg class="animate-spin h-12 w-12 text-[#FC913A] mx-auto drop-shadow-lg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <div id="loading-spinner" class="text-center text-xl text-gray-400 mt-12 hidden">
+            <svg class="animate-spin h-8 w-8 text-gray-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            <p class="mt-4 text-slate-400 font-medium tracking-wide animate-pulse">Pulling league data...</p>
+            <p class="mt-2">Loading data...</p>
         </div>
     </div>
 
     <script>
-        // DRAFT COUNTDOWN SCRIPT
-        const draftTargetDate = new Date("September 3, 2026 20:00:00 EDT").getTime();
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const difference = draftTargetDate - now;
-
-            if (difference > 0) {
-                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-                document.getElementById("days").innerText = String(days).padStart(2, '0');
-                document.getElementById("hours").innerText = String(hours).padStart(2, '0');
-                document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
-                document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
-            } else {
-                document.getElementById("countdown-timer").classList.add("hidden");
-                document.getElementById("countdown-complete").classList.remove("hidden");
-            }
-        }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
         const dataUrls = {
             'standings': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTXmw29UZh_a-p13chTl3EUiUx1ll9NGD014qj7tVC0snPjuHcvLL_SqUIisuCE9ysRPwigIrepqnJ-/pub?gid=0&single=true&output=csv',
             'draft': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQxG8wUhQIo6uXePQPQfmvZS-h0eOhWOWGV3TSerYYVVrWlaW59cdLe9rB_OqIalxkzuiDfNAa_5Gmu/pub?gid=763323686&single=true&output=csv',
@@ -313,11 +243,11 @@ Good luck this season. -->
             tableBody.innerHTML = '';
 
             if (headers.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="100%" class="p-6 text-center text-slate-500 italic">No data available.</td></tr>';
+                tableBody.innerHTML = '<tr><td colspan="100%" class="p-4 text-center text-gray-500">No data available.</td></tr>';
                 return;
             }
             
-            const headerHtml = headers.map(header => `<th class="px-6 py-4 font-semibold">${header}</th>`).join('');
+            const headerHtml = headers.map(header => `<th class="p-3">${header}</th>`).join('');
             tableHeader.innerHTML = headerHtml;
 
             const bodyHtml = data.map(row => {
@@ -329,9 +259,9 @@ Good luck this season. -->
                             cellValue = numericValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                         }
                     }
-                    return `<td class="px-6 py-4 hover:bg-slate-800/30 transition-colors">${cellValue}</td>`;
+                    return `<td class="p-3">${cellValue}</td>`;
                 }).join('');
-                return `<tr>${cells}</tr>`;
+                return `<tr class="border-b border-gray-700">${cells}</tr>`;
             }).join('');
             tableBody.innerHTML = bodyHtml;
         }
@@ -555,3 +485,4 @@ Good luck this season. -->
     </script>
 </body>
 </html>
+
